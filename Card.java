@@ -14,6 +14,7 @@ public class Card extends Actor
     private GreenfootImage backImage;
     private GreenfootImage faceImage;
     private boolean isFaceUp;
+
     
     public Card(Rank rank, Suit suit)
     {
