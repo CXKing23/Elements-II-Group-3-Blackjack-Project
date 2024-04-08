@@ -17,10 +17,6 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1100, 800, 1); 
-
-        
-        addObject(new settingsButton(), getWidth() / 2 , getHeight() / 2 + 250);
-
         prepare();
     }
     /**
@@ -29,7 +25,5 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-
     }
-    
 }
