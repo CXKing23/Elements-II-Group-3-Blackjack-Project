@@ -10,7 +10,7 @@ public enum Rank
     FOUR(4,"4"), FIVE(4,"4"), SIX(4,"4"), SEVEN(4,"4"),
     EIGHT(4,"4"), NINE(4,"4"),TEN(10,"10"), 
     JACK(11,"J"), QUEEN(12,"Q"), KING(13,"K"), WITCH(14, "W"),
-    FT(15, "FT");
+    FT(15, "FT"); //
 
     private int rank;
     private String rep;

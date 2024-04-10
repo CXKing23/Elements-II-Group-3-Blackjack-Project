@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Card extends Actor
 {
-    private static final double SCALE = 0.14;
+    private static final double SCALE = 0.14; //
     private Rank rank;
     private Suit suit;
     private GreenfootImage backImage;
