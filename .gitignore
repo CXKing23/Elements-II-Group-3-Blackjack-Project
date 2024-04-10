@@ -1,4 +1,4 @@
-*.class\
+*.class
 *.ctxt
 README.TXT
 .DS_Store

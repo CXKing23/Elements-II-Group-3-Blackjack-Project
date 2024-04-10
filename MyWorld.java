@@ -25,6 +25,5 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        
     }
 }
