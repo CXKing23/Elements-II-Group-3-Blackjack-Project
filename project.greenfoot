@@ -1,6 +1,6 @@
 #Greenfoot project file
 class.MyWorld.image=blackjackTable.png
-class.StartScreen.image=Full\ Start.png
+class.StartScreen.image=Start\ Up.png
 dependency1.from=Card
 dependency1.to=Rank
 dependency1.type=UsesDependency
@@ -9,9 +9,9 @@ dependency2.to=Suit
 dependency2.type=UsesDependency
 editor.fx.0.height=728
 editor.fx.0.width=800
-editor.fx.0.x=309
-editor.fx.0.y=98
-height=801
+editor.fx.0.x=640
+editor.fx.0.y=103
+height=809
 package.numDependencies=2
 package.numTargets=5
 project.charset=UTF-8
@@ -66,5 +66,5 @@ target5.y=0
 version=3.1.0
 width=1346
 world.lastInstantiated=StartScreen
-xPosition=44
+xPosition=0
 yPosition=25
