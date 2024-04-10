@@ -20,7 +20,7 @@ public enum Suit
     public int getValue(){
         return value;
     }
-    
+
     public String toString(){
         return rep;
     }
