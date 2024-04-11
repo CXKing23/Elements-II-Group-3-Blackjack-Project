@@ -2,31 +2,39 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class Card here.
- * 
- * @author (your name) 
+ *
+ * @author (your name)
  * @version (a version number or a date)
  */
 public class Card extends Actor
 {
-    private static final double SCALE = 0.14;
+    private static final double SCALE = 0.14; //
     private Rank rank;
     private Suit suit;
     private GreenfootImage backImage;
     private GreenfootImage faceImage;
     private boolean isFaceUp;
-    
-    public Card(Rank rank, Suit suit)
-    {
+
+    /* vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+     * To create a card, you do:
+     *      Rank.(card name in all caps)
+     *       Suit.(suit name in all caps)
+     *
+     *  Fortune Teller = Rank.FT Suit.SPECIAL
+     *  Witch = Rank.WITCH Suit.SPECIAL
+     *  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     */
+    public Card(Rank rank, Suit suit) {
         this(rank, suit, false);
     }
-    
-    public Card(Rank rank, Suit suit, Boolean isFaceUp){
+
+    public Card(Rank rank, Suit suit, Boolean isFaceUp) {
         this.isFaceUp = isFaceUp;
         this.rank =  rank;
         this.suit = suit;
         backImage = new GreenfootImage("BackOfCards.png");
         String suitName = "Clubs/clubs";
-        switch (suit){
+        switch (suit) {
             case DIAMOND:
                 suitName = "Diamonds/diamonds";
                 break;
@@ -36,32 +44,31 @@ public class Card extends Actor
             case HEART:
                 suitName = "Hearts/hearts";
                 break;
+            case SPECIAL:
+                suitName = "Specials/special";
+                break;
         }
         faceImage = new GreenfootImage(suitName+"_"+rank.getRank()+".png");
         backImage.scale((int)(backImage.getWidth()*SCALE), (int)(backImage.getHeight()*SCALE));
         faceImage.scale((int)(faceImage.getWidth()*SCALE), (int)(faceImage.getHeight()*SCALE));
         setImage(backImage);
     }
-    
-    public void show()
-    {
+
+    public void show() {
         isFaceUp = true;
         setImage(faceImage);
     }
 
-    public void hide()
-    {
+    public void hide() {
         isFaceUp = false;
         setImage(backImage);
     }
 
-    public boolean isFaceUp()
-    {
+    public boolean isFaceUp() {
         return isFaceUp;
     }
 
-    public Rank getRank()
-    {
+    public Rank getRank() {
         return rank;
     }
 
@@ -73,8 +80,7 @@ public class Card extends Actor
      * Act - do whatever the Card wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act()
-    {
+    public void act() {
         // Add your action code here.
     }
 }
