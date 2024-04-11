@@ -22,7 +22,7 @@ public class Card extends Actor
     
     public Card(Rank rank, Suit suit, Boolean isFaceUp){
         this.isFaceUp = isFaceUp;
-        this.rank = rank;
+        this.rank = v rank;
         this.suit = suit;
         backImage = new GreenfootImage("BackOfCards.png");
         String suitName = "Clubs/clubs";
