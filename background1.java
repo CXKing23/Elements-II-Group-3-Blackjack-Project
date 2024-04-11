@@ -1,22 +1,23 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * Write a description of class background1 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class background1 extends World
 {
 
     /**
-     * Constructor for objects of class MyWorld.
+     * Constructor for objects of class background1.
      * 
      */
-    public MyWorld()
+    public background1()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1100, 800, 1); 
-        Greenfoot.setWorld(new StartScreen());
-    }
+        setBackground("Untitled-9.png");
+        addObject(new homeButton(), getWidth() / 2 -500 , getHeight() / 2 );
+}
 }

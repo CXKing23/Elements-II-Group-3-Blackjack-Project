@@ -17,6 +17,9 @@ public class StartScreen extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1100, 800, 1); 
+        addObject(new settingsButton(), getWidth() / 2+40 , getHeight() / 2 +30);
+        addObject(new playButton(), getWidth() / 2+60 , getHeight() / 2 -50);
+        setBackground("Start Up.png");
         prepare();
     }
     /**
