@@ -33,22 +33,27 @@ public class Card extends Actor
         this.rank =  rank;
         this.suit = suit;
         backImage = new GreenfootImage("BackOfCards.png");
-        String suitName = "Clubs/clubs";
+        String suitName = "earth";
+        String folderName = "EarthCards";
         switch (suit) {
-            case DIAMOND:
-                suitName = "Diamonds/diamonds";
+            case NATURE:
+                suitName = "nature";
+                folderName = "NatureCards";
                 break;
-            case SPADE:
-                suitName = "Spades/spades";
+            case WATER:
+                suitName = "water";
+                folderName = "WaterCards";
                 break;
-            case HEART:
-                suitName = "Hearts/hearts";
+            case FIRE:
+                suitName = "fire";
+                folderName = "FireCards";
                 break;
             case SPECIAL:
-                suitName = "Specials/special";
+                suitName = "special";
+                folderName = "SpecialCards";
                 break;
         }
-        faceImage = new GreenfootImage(suitName+"_"+rank.getRank()+".png");
+        faceImage = new GreenfootImage(folderName+"/"+rank.getRank()+"_of_" + suitName + ".png");
         backImage.scale((int)(backImage.getWidth()*SCALE), (int)(backImage.getHeight()*SCALE));
         faceImage.scale((int)(faceImage.getWidth()*SCALE), (int)(faceImage.getHeight()*SCALE));
         setImage(backImage);
