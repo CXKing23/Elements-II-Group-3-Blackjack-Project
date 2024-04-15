@@ -11,6 +11,9 @@ public class Deck extends Actor
 {
     private Card[] cards;
     public int numOfCards;
+    private static final int witchCardCount = 2;
+    private static final int ftCardCount = 2;
+    
     
     public void grow(){
         Card[] tempCards = new Card[cards.length * 2];
@@ -21,17 +24,27 @@ public class Deck extends Actor
     }
     
     public Deck(int numOfDecks){
-        numOfCards = numOfDecks*52;
+        numOfCards = numOfDecks*(52+witchCardCount+ftCardCount);
         cards = new Card[numOfCards];
         int index = 0;
         for (int deckCount=0; deckCount < numOfDecks; deckCount++) {
             for(Suit suit: Suit.values()){
+                if (suit.equals(Suit.SPECIAL)){
+                    continue;
+                }
+                
                 for(Rank rank: Rank.values()){
-                    if (rank == Rank.JOKER){
+                    if ((rank == Rank.JOKER)|| (rank == Rank.WITCH) || (rank == Rank.FT)){
                         continue;
                     }
                     cards[index++] = new Card(rank,suit);
                 }
+            }
+            for(int cardCount = 0; cardCount < ftCardCount; cardCount++){
+                cards[index++] = new Card(Rank.FT,Suit.SPECIAL);
+            }
+            for(int cardCount = 0; cardCount < witchCardCount; cardCount++){
+                cards[index++] = new Card(Rank.WITCH,Suit.SPECIAL);
             }
         }
         shuffle();
