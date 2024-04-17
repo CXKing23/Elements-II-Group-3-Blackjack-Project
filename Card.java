@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Card extends Actor
 {
-    private static final double SCALE = 0.14; //
+    private static final double SCALE = 1.20; 
     private Rank rank;
     private Suit suit;
     private GreenfootImage backImage;
@@ -17,17 +17,36 @@ public class Card extends Actor
 
     /* vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
      * To create a card, you do:
-     *      Rank.(card name in all caps)
-     *       Suit.(suit name in all caps)
-     *
+     * 
+     * Rank.(card name in all caps)
+     *      (includes face cards and number cards)
+     *      
+     * Suit.(suit name in all caps)
+     *      (NATURE, WATER, FIRE, EARTH, SPECIAL)
+     * 
      *  Fortune Teller = Rank.FT Suit.SPECIAL
      *  Witch = Rank.WITCH Suit.SPECIAL
-     *  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
      */
     public Card(Rank rank, Suit suit) {
         this(rank, suit, false);
     }
 
+    /* vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+     * To create a card, you do:
+     * 
+     * Rank.(card name in ALL CAPS)
+     *      (includes face cards and number cards)
+     *      
+     * Suit.(suit name in ALL CAPS)
+     *      (NATURE, WATER, FIRE, EARTH, SPECIAL)
+     *      
+     * true / false
+     * 
+     * Fortune Teller = Rank.FT Suit.SPECIAL
+     * Witch = Rank.WITCH Suit.SPECIAL
+     * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     */
     public Card(Rank rank, Suit suit, Boolean isFaceUp) {
         this.isFaceUp = isFaceUp;
         this.rank =  rank;
@@ -53,10 +72,17 @@ public class Card extends Actor
                 folderName = "SpecialCards";
                 break;
         }
+        
         faceImage = new GreenfootImage(folderName+"/"+rank.getRank()+"_of_" + suitName + ".png");
-        backImage.scale((int)(backImage.getWidth()*SCALE), (int)(backImage.getHeight()*SCALE));
-        faceImage.scale((int)(faceImage.getWidth()*SCALE), (int)(faceImage.getHeight()*SCALE));
-        setImage(backImage);
+        //backImage.scale((int)(backImage.getWidth()*SCALE), (int)(backImage.getHeight()*SCALE));
+        //faceImage.scale((int)(faceImage.getWidth()*SCALE), (int)(faceImage.getHeight()*SCALE));
+        backImage.scale((int) (75 * SCALE),(int) (105 * SCALE));
+        faceImage.scale((int) (75 * SCALE),(int) (105 * SCALE));
+        if (isFaceUp) {
+            setImage(faceImage);
+        } else {
+            setImage(backImage);
+        }
     }
 
     public void show() {
