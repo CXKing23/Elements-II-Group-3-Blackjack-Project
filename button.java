@@ -13,7 +13,7 @@ public class button extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
 
-    GreenfootImage Image = new GreenfootImage("Untitled-9.png");
+    GreenfootImage Image = new GreenfootImage("background1.png");
     public button(String text) {
         // Create a GreenfootImage with transparent background
         GreenfootImage image = new GreenfootImage(200, 50); // Adjust size as needed
