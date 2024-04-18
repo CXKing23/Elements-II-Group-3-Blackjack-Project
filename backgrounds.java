@@ -17,13 +17,13 @@ public class backgrounds extends switchButton
         switchButton buttonInstance = new switchButton(); // Create an instance of Button
         int count = buttonInstance.getCount(); // Access the getCount() method
         if(count == 0){
-            miniConfig("Untitled-9.png");
+            miniConfig("background1.png");
         }else if(count == 1){
-            miniConfig("Untitled-6.png");
+            miniConfig("background2.png");
         }else if(count == 2){
-            miniConfig("Untitled-3 (1).png");
+            miniConfig("background3.png");
         }else if(count == 3){
-            miniConfig("Bow-Axe-Background-1.png");
+            miniConfig("background4.png");
         }
     }
 }
