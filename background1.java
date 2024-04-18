@@ -18,6 +18,7 @@ public class background1 extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1100, 800, 1); 
         setBackground("Untitled-9.png");
+        addObject(new RulesButton(), 100, 50);
         addObject(new homeButton(), getWidth() / 2 -500 , getHeight() / 2 );
 }
 }
