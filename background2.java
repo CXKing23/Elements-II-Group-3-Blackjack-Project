@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class background2 extends World
+public class background2 extends GameWorld
 {
 
     /**
@@ -16,7 +16,7 @@ public class background2 extends World
     public background2()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1100, 800, 1); 
+        //super(1100, 800, 1); 
         setBackground("background2.png");
         addObject(new homeButton(), getWidth() / 2 -500 , getHeight() / 2 );
     }
