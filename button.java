@@ -23,7 +23,9 @@ public class button extends Actor
         image.drawString(text, 20, 35); // Draw text at position (20, 35)
         setImage(image); // Set the image as the actor's image
     }
-
+    
+    
+    
     public void act() {
         // Check if the button is clicked
         if (Greenfoot.mouseClicked(this)) {
