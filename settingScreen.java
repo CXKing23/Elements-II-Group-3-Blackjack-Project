@@ -18,8 +18,8 @@ public class settingScreen extends World
         
         setBackground("recycpap.jpg");
         
-        addObject(new switchButton(), getWidth() / 2 +40 , getHeight() / 2 +30 );      
+        addObject(new switchButton(), getWidth() / 2 +10 , getHeight() / 2 +30 );      
         addObject(new backgrounds(), getWidth() / 2 , getHeight() / 2 -250 );
-        addObject(new homeButton(), getWidth() / 2 -250 , getHeight() / 2 );
+        addObject(new homeButton(), getWidth() / 2 -280 , getHeight() / 2 );
     }
 }
