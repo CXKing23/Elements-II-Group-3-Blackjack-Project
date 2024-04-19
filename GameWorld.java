@@ -28,5 +28,6 @@ public class GameWorld extends World
         } else if (state == GameState.D_PLAY){
             
         }
+        addObject(new homeButton(), getWidth() / 2 -500 , getHeight() / 2 );
     }
 }

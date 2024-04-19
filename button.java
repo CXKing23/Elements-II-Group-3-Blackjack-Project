@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
  * Write a description of class button here.
  * 
@@ -8,36 +7,41 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class button extends Actor
 {
+    static int count; 
     /**
      * Act - do whatever the button wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-
+    protected static GreenfootImage image = new GreenfootImage("redButton.png");
     GreenfootImage Image = new GreenfootImage("background1.png");
-    public button(String text) {
-        // Create a GreenfootImage with transparent background
-        GreenfootImage image = new GreenfootImage(200, 50); // Adjust size as needed
-        // Draw text on the image
-        image.setColor(Color.BLACK); // Set text color
-        image.setFont(new Font("Arial", true, false, 24)); // Set font
-        image.drawString(text, 20, 35); // Draw text at position (20, 35)
-        setImage(image); // Set the image as the actor's image
+    public button() {
+        image.scale(170,80);
+        setImage(image);
+        image.setColor(Color.BLACK); 
+        image.setFont(new Font("Arial", true, false, 24));
+        
     }
-    
-    
+
+    public button(String filename){
+        GreenfootImage customimage = new GreenfootImage(filename);
+        setImage(customimage);
+    }
+
     
     public void act() {
         // Check if the button is clicked
         if (Greenfoot.mouseClicked(this)) {
-            onClick(); 
+            onClick();
+
             
         }
     }
     
     // Method to handle button click (to be overridden by subclasses)
     public void onClick() {
-    
+         
     }
+    
     
     //Method to set the minibackground in the settings menu to the desired size
     public void miniConfig(String filename){

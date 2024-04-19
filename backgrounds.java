@@ -14,8 +14,7 @@ public class backgrounds extends switchButton
      */
     public void act()
     {
-        switchButton buttonInstance = new switchButton(); // Create an instance of Button
-        int count = buttonInstance.getCount(); // Access the getCount() method
+    
         if(count == 0){
             miniConfig("background1.png");
         }else if(count == 1){
@@ -26,4 +25,5 @@ public class backgrounds extends switchButton
             miniConfig("background4.png");
         }
     }
+    
 }
