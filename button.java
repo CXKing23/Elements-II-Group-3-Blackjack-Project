@@ -21,10 +21,12 @@ public class button extends Actor
         image.setFont(new Font("Arial", true, false, 24));
         
     }
+
     public button(String filename){
         GreenfootImage customimage = new GreenfootImage(filename);
         setImage(customimage);
     }
+
     
     public void act() {
         // Check if the button is clicked

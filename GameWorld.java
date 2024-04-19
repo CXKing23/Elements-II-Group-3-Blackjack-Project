@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameWorld extends World
 {
-    GameState state;
     /**
      * Constructor for objects of class GameWorld.
      */
@@ -19,6 +18,7 @@ public class GameWorld extends World
         
         if (state == GameState.BET) {
             // open betting screen and set bet
+            }
         } else if (state == GameState.DEAL) {
             /* open playing screen, set deck, deal cards 
             * to dealer and player, set dealer hand and player hand
@@ -30,5 +30,4 @@ public class GameWorld extends World
         }
         addObject(new homeButton(), getWidth() / 2 -500 , getHeight() / 2 );
     }
-    
 }
