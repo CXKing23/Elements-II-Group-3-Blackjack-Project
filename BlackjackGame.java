@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BlackJackGame here.
+ * Class that handles the game
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -19,7 +19,11 @@ public class BlackjackGame extends CardGame
         dealer = new BlackjackHand("Dealer");
         numberOfHands = 0;
     }
-    
+    /**
+    *Add player to game
+    *
+    *
+    */
     public void join(String name)
     {
         if (numberOfHands < hands.length){
@@ -27,7 +31,10 @@ public class BlackjackGame extends CardGame
             numberOfHands++;
         }
     }
-    
+    /**
+    *Removes player from game
+    *
+    */
     public void leave(String name)
     {
         boolean isFound = true;
