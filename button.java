@@ -12,13 +12,9 @@ public class button extends Actor
      * Act - do whatever the button wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    protected static GreenfootImage image = new GreenfootImage("redButton.png");
+    protected static GreenfootImage image = new GreenfootImage("activeButton.png");
     GreenfootImage Image = new GreenfootImage("background1.png");
     public button() {
-        image.scale(170,80);
-        setImage(image);
-        image.setColor(Color.BLACK); 
-        image.setFont(new Font("Arial", true, false, 24));
         
     }
 
@@ -30,8 +26,9 @@ public class button extends Actor
     
     public void act() {
         // Check if the button is clicked
-        if (Greenfoot.mouseClicked(this)) {
+        if (Greenfoot.mousePressed(this)) {
             onClick();
+            
 
             
         }
@@ -40,6 +37,7 @@ public class button extends Actor
     // Method to handle button click (to be overridden by subclasses)
     public void onClick() {
          
+    
     }
     
     
