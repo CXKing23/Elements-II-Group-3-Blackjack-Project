@@ -14,7 +14,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class button extends Actor
 {
 
-    static int count; 
     static int duration = 10;
 
     static int count; // Static variable to track the count of buttons created
@@ -26,12 +25,6 @@ public class button extends Actor
     /**
      * Default constructor for button class.
      */
-
-    protected static GreenfootImage image = new GreenfootImage("activeButton.png");
-    GreenfootImage Image = new GreenfootImage("background1.png");
-    
-
-
     public button() {
         
     }
