@@ -39,9 +39,6 @@ public class hitButton extends button
         Greenfoot.delay(duration);
         GreenfootImage image = new GreenfootImage("activeButton.png");
 
-        Greenfoot.delay(75); // Delay to show the clicked state
-        GreenfootImage image = new GreenfootImage("activeButton.png"); // Restore default appearance
-
         image.scale(170,80);
         setImage(image);
         image.setColor(Color.BLACK); 
