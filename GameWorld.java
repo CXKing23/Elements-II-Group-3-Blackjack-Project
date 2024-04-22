@@ -17,8 +17,17 @@ public class GameWorld extends World
         GameState state = GameState.BET;
         hitButton hitButton = new hitButton();
         standButton standButton = new standButton();
+        homeButton button = new homeButton();
+        addObject(button, getWidth() / 2 -450 , getHeight() / 2-100 );
+    
         if (state == GameState.BET) {
             // open betting screen and set bet
+            addObject(new bronzeChip("Chips/bronze_chip.png"), getWidth() / 2-200 , getHeight() / 2 );
+            addObject(new bronzeChip("Chips/silver_chip.png"), getWidth() / 2 , getHeight() / 2 );
+            addObject(new bronzeChip("Chips/gold_chip.png"), getWidth() / 2+200 , getHeight() / 2 );
+            addObject(new bronzeChip("redButton.png"), getWidth() / 2 , getHeight() / 2 +150);
+            addObject(new confirmBet(), getWidth() / 2 , getHeight() / 2 +250);
+            addObject(new Currency(), getWidth() / 2 , getHeight() / 2 -200);
             }
          else if (state == GameState.DEAL) {
             /* open playing screen, set deck, deal cards 
@@ -32,7 +41,7 @@ public class GameWorld extends World
             removeObject(standButton);
 
         }
-        addObject(new homeButton(), getWidth() / 2 -450 , getHeight() / 2-100 );
+        
         
     }
 }

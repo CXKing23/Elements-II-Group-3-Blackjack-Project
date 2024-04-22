@@ -17,5 +17,8 @@ public class homeButton extends Actor
         if (Greenfoot.mouseClicked(this)) {
             Greenfoot.setWorld(new StartScreen());  
         }
+        //if(Greenfoot.setWorld(new background()) == (new background())){
+           // Greenfoot.setWorld(new warningScreen());
     }
 }
+

@@ -8,18 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class button extends Actor
 {
     static int count; 
+    static int duration = 10;
+    
     /**
      * Act - do whatever the button wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     protected static GreenfootImage image = new GreenfootImage("activeButton.png");
     GreenfootImage Image = new GreenfootImage("background1.png");
+    
     public button() {
         
     }
 
     public button(String filename){
         GreenfootImage customimage = new GreenfootImage(filename);
+        customimage.scale(150,150);
         setImage(customimage);
     }
 
@@ -28,9 +32,7 @@ public class button extends Actor
         // Check if the button is clicked
         if (Greenfoot.mousePressed(this)) {
             onClick();
-            
-
-            
+    
         }
     }
     
