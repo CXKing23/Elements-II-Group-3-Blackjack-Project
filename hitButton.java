@@ -1,6 +1,3 @@
-Here's the updated code with Java-like documentation added:
-
-```java
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -48,6 +45,3 @@ public class hitButton extends button
         // Add functionality here
     }
 }
-```
-
-I've added Java-like documentation to describe the purpose of the class, its methods, and their parameters.
