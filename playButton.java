@@ -28,7 +28,7 @@ public class playButton extends button
         image.setColor(Color.BLACK); 
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Play", 60, 48);
-        Greenfoot.delay(75);
+        Greenfoot.delay(duration);
         GreenfootImage image = new GreenfootImage("activeButton.png");
         image.scale(170,80);
         setImage(image);

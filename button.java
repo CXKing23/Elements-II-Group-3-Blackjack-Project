@@ -13,14 +13,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class button extends Actor
 {
+
+    static int count; 
+    static int duration = 10;
+
     static int count; // Static variable to track the count of buttons created
     
     protected static GreenfootImage image = new GreenfootImage("activeButton.png"); // Default image for buttons
     GreenfootImage Image = new GreenfootImage("background1.png"); // Default image for background
+
     
     /**
      * Default constructor for button class.
      */
+
+    protected static GreenfootImage image = new GreenfootImage("activeButton.png");
+    GreenfootImage Image = new GreenfootImage("background1.png");
+    
+
+
     public button() {
         
     }
@@ -32,6 +43,7 @@ public class button extends Actor
      */
     public button(String filename){
         GreenfootImage customimage = new GreenfootImage(filename);
+        customimage.scale(150,150);
         setImage(customimage);
     }
 
@@ -43,6 +55,10 @@ public class button extends Actor
         // Check if the button is clicked
         if (Greenfoot.mousePressed(this)) {
             onClick();
+
+    
+
+
         }
     }
     
