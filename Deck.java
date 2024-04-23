@@ -14,8 +14,8 @@ import java.util.Random;
  */
 public class Deck extends Actor
 {
-    private Card[] cards;              // Array to hold the cards in the deck
-    protected int numOfCards;          // Number of cards currently in the deck
+    protected Card[] cards;              // Array to hold the cards in the deck
+    public int numOfCards;          // Number of cards currently in the deck
     private static final int witchCardCount = 2; // Number of witch cards in the deck
     private static final int ftCardCount = 2;    // Number of Fortune Teller cards in the deck
     private GreenfootImage backImage;  // Image for the back of the cards

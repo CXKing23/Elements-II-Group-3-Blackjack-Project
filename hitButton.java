@@ -23,6 +23,15 @@ public class hitButton extends button
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Hit", 70, 48);
     }
+
+    public hitButton(String name){
+        image.scale(170,80);
+        setImage(image);
+        image.setColor(Color.BLACK);
+        image.setFont(new Font("Arial", true, false, 24));
+        image.drawString(name, 70, 48);
+    }
+    
     public boolean getClickedState(){
         return wasClicked;
     }

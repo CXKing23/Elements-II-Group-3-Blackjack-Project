@@ -12,19 +12,21 @@ public class GameWorld extends World
     public GameState state;
     String background;
     // buttons
-    hitButton hitButton = new hitButton();
-    standButton standButton = new standButton();
-    playButton playButton = new playButton();
-    settingsButton settingsButton = new settingsButton();
-    homeButton homeButton = new homeButton();
-    Deck deck = new Deck(3); 
-    BlackjackHand pHand = new BlackjackHand("pHand");
-    BlackjackHand dHand = new BlackjackHand("dHand");
-    Currency CurrencyCount = new Currency();
+    private hitButton hitButton = new hitButton();
+    private standButton standButton = new standButton();
+    private playButton playButton = new playButton();
+    private settingsButton settingsButton = new settingsButton();
+    private homeButton homeButton = new homeButton();
+    private hitButton abilityButton = new hitButton("Activate Witch");
+    private Deck deck = new Deck(3); 
+    private BlackjackHand pHand = new BlackjackHand("pHand");
+    private BlackjackHand dHand = new BlackjackHand("dHand");
+    private Currency CurrencyCount = new Currency();
     confirmBet confirmButton = (new confirmBet());
     private ArrayList<Actor> removeList = new ArrayList<>();
     int GameStateDEALCount  = 0;
     int GameStatePLAYCount = 0;
+    GreenfootImage image = new GreenfootImage(100, 100);
     /**
      * Constructor for objects of class GameWorld.
      */
@@ -39,7 +41,7 @@ public class GameWorld extends World
         if (state == GameState.BET) {
 
             // open betting screen and set bet
-            
+
             bronzeChip BronzeChip = new bronzeChip("Chips/bronze_chip.png");
             removeList.add(BronzeChip);
             bronzeChip SilverChip = new bronzeChip("Chips/silver_chip.png");
@@ -58,182 +60,157 @@ public class GameWorld extends World
             addObject(CurrencyCount, getWidth() / 2 , getHeight() / 2 -200);
             addObject(homeButton, getWidth() / 2 -450 , getHeight() / 2 );
 
-
         }
     }
+
     public GameState getGameState(){
         return state;
     }
 
-    //if (state == GameState.DEAL) {
-        /* open playing screen, set deck, deal cards
-         * to dealer and player, set dealer hand and player hand
-         * on screen
+    /**addObject(new confirmBet(), getWidth() / 2 , getHeight() / 2 +500);
+    removeObject(homeButton);
+    removeObject(confirmButton);
+    addObject(deck, 870, 475);
+    addObject(dHand,550, 260);
+    addObject(pHand,550, 605);
 
-        //StartScreen();
-
-        //  if (state == GameState.DEAL) {
-        /* open playing screen, set deck, deal cards
-         * to dealer and player, set dealer hand and player hand
-         * on screen */
-        //} else if (state == GameState.PLAY) {
-        // addObject(new hitButton(), getWidth() / 2 +470 , getHeight() / 2-60 );
-        // addObject(new standButton(), getWidth() / 2 +470 , getHeight() / 2+150 );
-        //} else if (state == GameState.D_PLAY){
-        //  removeObject(hitButton);
-        //removeObject(standButton);
-
-        //}
-
-        /**addObject(new confirmBet(), getWidth() / 2 , getHeight() / 2 +500);
-        removeObject(homeButton);
-        removeObject(confirmButton);
-        addObject(deck, 870, 475);
-        addObject(dHand,550, 260);
-        addObject(pHand,550, 605);
-
-        pHand.add(deck.deal(true));
-        //Greenfoot.delay(50);
-        dHand.add(deck.deal());
-        //Greenfoot.delay(50);
-        pHand.add(deck.deal(true));
-        //Greenfoot.delay(50);
-        dHand.add(deck.deal(true));
-        //Greenfoot.delay(50);
-         */
-
+    pHand.add(deck.deal(true));
+    //Greenfoot.delay(50);
+    dHand.add(deck.deal());
+    //Greenfoot.delay(50);
+    pHand.add(deck.deal(true));
+    //Greenfoot.delay(50);
+    dHand.add(deck.deal(true));
+    //Greenfoot.delay(50);
+     */
 
         
 
-
-public void StartScreen()
-{
-addObject(playButton, getWidth() / 2 , getHeight() / 2 -50);
-addObject(settingsButton, getWidth() / 2 , getHeight() / 2 +30);
-background = "Start Up.png";
-setBackground(background);
-}
-
-public void SettingScreen()
-{
-background = "recycpap.jpg";
-setBackground(background);
-addObject(new switchButton(), getWidth() / 2 +10 , getHeight() / 2 +30 );
-addObject(new backgrounds(), getWidth() / 2 , getHeight() / 2 -250 );
-addObject(new homeButton(), getWidth() / 2 -280 , getHeight() / 2 );
-}
-
-public void WarningScreen()
-{
-background = "recycpap.jpg";
-setBackground(background);
-}
-
-public void removeButtons(){
-if (playButton.background != "Start Up.png"){
-removeObject(playButton);
-removeObject(settingsButton);
-}
-}
-
-public void addPlayButtons(){
-addObject(hitButton, 100, 300);
-addObject(standButton, 100, 500);
-}
-
-public void act(){
-    if (state == GameState.START_SCREEN) {
-
+    public void StartScreen()
+    {
+        addObject(playButton, getWidth() / 2 , getHeight() / 2 -50);
+        addObject(settingsButton, getWidth() / 2 , getHeight() / 2 +30);
+        background = "Start Up.png";
+        setBackground(background);
     }
-    else if (state == GameState.BET){
-        homeButton.inStartScreen = false;
-        if (confirmButton.activate == 1) {
-         state = GameState.DEAL;
-         CurrencyCount.setLocation(CurrencyCount.getX()+200, CurrencyCount.getY());
+
+    public void SettingScreen()
+    {
+        background = "recycpap.jpg";
+        setBackground(background);
+        addObject(new switchButton(), getWidth() / 2 +10 , getHeight() / 2 +30 );
+        addObject(new backgrounds(), getWidth() / 2 , getHeight() / 2 -250 );
+        addObject(new homeButton(), getWidth() / 2 -280 , getHeight() / 2 );
+    }
+
+    public void WarningScreen()
+    {
+        background = "recycpap.jpg";
+        setBackground(background);
+    }
+
+    public void removeButtons(){
+        if (playButton.background != "Start Up.png"){
+            removeObject(playButton);
+            removeObject(settingsButton);
         }
     }
-    else if (state == GameState.DEAL){
-        if (GameStateDEALCount == 0){
-            removeObjects(removeList);
-            addObject(deck, 870, 475);
-            addObject(dHand,550, 260);
-            addObject(pHand,550, 605);
 
-            pHand.add(deck.deal(true));
-            Greenfoot.delay(100);
-            dHand.add(deck.deal());
-            Greenfoot.delay(100);
-            pHand.add(deck.deal(true));
-            Greenfoot.delay(100);
-            dHand.add(deck.deal(true));
-            Greenfoot.delay(100);
-            state = GameState.PLAY;
-            GameStateDEALCount = 1;
+    public void addPlayButtons(){
+        addObject(hitButton, 100, 300);
+        addObject(standButton, 100, 500);
+    }
+
+    public void act(){
+        if (state == GameState.START_SCREEN) {
+
+        }
+        else if (state == GameState.BET){
+            homeButton.inStartScreen = false;
+            if (confirmButton.activate == 1) {
+                state = GameState.DEAL;
+                CurrencyCount.setLocation(CurrencyCount.getX()+200, CurrencyCount.getY());
+            }
+        }
+        else if (state == GameState.DEAL){
+            if (GameStateDEALCount == 0){
+                removeObjects(removeList);
+                addObject(deck, 870, 475);
+                addObject(dHand,550, 260);
+                addObject(pHand,550, 605);
+
+                pHand.add(deck.deal(true));
+                Greenfoot.delay(100);
+                dHand.add(deck.deal());
+                Greenfoot.delay(100);
+                pHand.add(deck.deal(true));
+                Greenfoot.delay(100);
+                dHand.add(deck.deal(true));
+                Greenfoot.delay(100);
+                state = GameState.PLAY;
+                GameStateDEALCount = 1;
+            }
+        }
+        else if (state == GameState.PLAY){
+            if (GameStatePLAYCount == 0) {
+                addPlayButtons();
+                GameStatePLAYCount = 1;
+            }
+            if (hitButton.getClickedState()){
+                Card dealtCard = deck.deal(true);
+                pHand.add(dealtCard);
+                hitButton.setClickedState(false);
+                if (dealtCard.getRank() == Rank.WITCH){
+        
+                    dealtCard = null;
+                    addObject(abilityButton, 500, 400);
+                }
+
+            }
+            if (standButton.getClickedState()){
+                state = GameState.D_PLAY;
+                standButton.setClickedState(false);
+
+            } 
+            if (abilityButton.getClickedState()){
+                pHand.removeAtIndex(pHand.numOfCards-1);
+                for (int index = 0; index < pHand.numOfCards -1; index++) {
+                Card cardTested = pHand.cards[index];
+                if (cardTested.getRank() == Rank.WITCH){
+                    pHand.removeAtIndex(index);
+                }
+                }
+                abilityButton.setClickedState(false);
+                removeObject(abilityButton);
+
+            }
+
+            pHand.calculateWeight();
+            if (pHand.getWeight() == -1){
+                state = GameState.FIND_WINNER;
+            }
+        } else if (state == GameState.D_PLAY){
+            dHand.show();
+            dHand.calculateWeight();
+            if ((dHand.getWeight() <= 16) && (dHand.getWeight() > 0 )){
+                Greenfoot.delay(100);
+                dHand.add(deck.deal(true));
+            } else if (dHand.getWeight() >= 17){
+                state = GameState.FIND_WINNER;
+            }
+
+        } else if (state == GameState.FIND_WINNER){
+            if (dHand.getWeight() == pHand.getWeight()){
+                state = GameState.BET;
+            } else if(pHand.getWeight() > dHand.getWeight()) {
+                image = new GreenfootImage("Player Wins" , 24, Color.BLACK, new Color(0, 0, 0, 0));
+            } else if(pHand.getWeight() < dHand.getWeight()) {
+                System.out.println("Dealer Wins");
+            }
+            Greenfoot.delay(1000);
+            Greenfoot.setWorld(new StartScreen());
+
         }
     }
-    else if (state == GameState.PLAY){
-         if (GameStatePLAYCount == 0) {
-            addPlayButtons();
-            GameStatePLAYCount = 1;
-         }
-         if (hitButton.getClickedState()){
-             pHand.add(deck.deal(true));
-             hitButton.setClickedState(false);
-         }
-         if (standButton.getClickedState()){
-             state = GameState.D_PLAY;
-             standButton.setClickedState(false);
 
-         }
-
-         pHand.calculateWeight();
-         if (pHand.getWeight() == -1){
-             state = GameState.FIND_WINNER;
-         }
-    } else if (state == GameState.D_PLAY){
-        dHand.show();
-        dHand.calculateWeight();
-        if ((dHand.getWeight() <= 16) && (dHand.getWeight() > 0 )){
-            Greenfoot.delay(100);
-            dHand.add(deck.deal(true));
-        } else if (dHand.getWeight() >= 17){
-            state = GameState.FIND_WINNER;
-        }
-
-    } else if (state == GameState.FIND_WINNER){
-        if (dHand.getWeight() == pHand.getWeight()){
-            state = GameState.BET;
-        } else if(pHand.getWeight() > dHand.getWeight()) {
-            System.out.println("Player Wins");
-        } else if(pHand.getWeight() < dHand.getWeight()) {
-            System.out.println("Delaer Wins");
-        }
-    
-    }
-}
-
-/**
- *  removeButtons();
-//addButtons();
-if (playButton.background == "background1.png" || playButton.background == "background2.png" || playButton.background == "background3.png"
-|| playButton.background == "background4.png"){
-
-state = GameState.BET;
-}
-if (state == GameState.BET) {
-// open betting screen and set bet
-addObject(new bronzeChip("Chips/bronze_chip.png"), getWidth() / 2-200 , getHeight() / 2 );
-addObject(new bronzeChip("Chips/silver_chip.png"), getWidth() / 2 , getHeight() / 2 );
-addObject(new bronzeChip("Chips/gold_chip.png"), getWidth() / 2+200 , getHeight() / 2 );
-addObject(new bronzeChip("redButton.png"), getWidth() / 2 , getHeight() / 2 +150);
-addObject(new confirmBet(), getWidth() / 2 , getHeight() / 2 +250);
-addObject(new Currency(), getWidth() / 2 , getHeight() / 2 -200);
-addObject(homeButton, getWidth() / 2 -450 , getHeight() / 2 );
-if(confirmBet.activate == 1){
-state = GameState.DEAL;
-}else if (state == GameState.DEAL) {
-/* open playing screen, set deck, deal cards
- * to dealer and player, set dealer hand and player hand
- * on screen */
- 
 }
