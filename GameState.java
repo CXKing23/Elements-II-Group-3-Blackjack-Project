@@ -5,5 +5,5 @@
  * @version (a version number or a date)
  */
 public enum GameState {
-    BET, DEAL, PLAY, D_PLAY;
+    START_SCREEN, BET, DEAL, PLAY, D_PLAY, FIND_WINNER, GAME_OVER;
 }

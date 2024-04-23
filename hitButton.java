@@ -45,5 +45,8 @@ public class hitButton extends button
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Hit", 70, 48);    
         // Add functionality here
+
+
+
     }
 }

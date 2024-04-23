@@ -14,10 +14,19 @@ public class bronzeChip extends button
      */
     
     String chipType;
-    static Currency balance = new Currency();
-    static int currentBalance = balance.getBalance();
-    static int chipBalance = currentBalance;
-     public bronzeChip(String filename) {
+    public static Currency balance = new Currency();
+    public static int currentBalance = balance.getBalance();
+    public static int chipBalance = currentBalance;
+    
+    
+    
+    
+     /**
+         * Constructor that initializes this blackjack hand and sets the name.
+         * 
+         * @param filename the filename for the image
+         */
+    public bronzeChip(String filename) {
         super(filename);
         if (filename.equals("Chips/bronze_chip.png")) {
             chipType = "bronze";
@@ -42,11 +51,11 @@ public class bronzeChip extends button
             currentBalance = currentBalance-=10;
             chipBalance = currentBalance;
         } else if (chipType.equals("silver")) {
-          currentBalance-=50;
-          chipBalance = currentBalance;
-    } else if (chipType.equals("gold")) {
-        currentBalance-=100;
-        chipBalance = currentBalance;
+            currentBalance-=50;
+             chipBalance = currentBalance;
+        } else if (chipType.equals("gold")) {
+            currentBalance-=100;
+            chipBalance = currentBalance;
     }else{
         image= new GreenfootImage("redButton.png");
         image.scale(170,80);

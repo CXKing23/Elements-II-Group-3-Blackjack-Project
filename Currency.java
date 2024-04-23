@@ -14,18 +14,23 @@ public class Currency extends Actor
      */
     static int currentBalance;
     int Bet; 
-    static int Balance = 1000;
+    static final int startingBalance = 1000;
     GreenfootImage image; 
     public Currency()
     {
-        currentBalance = Balance;
+        currentBalance = startingBalance;
         setImage(image);
     }
-    public void act(){
-        image = new GreenfootImage("Balance: " + bronzeChip.getBalance(), 24, Color.BLACK, new Color(0, 0, 0, 0));
-        setImage(image);
+    public void setBalance(int newBalance){
+        currentBalance = newBalance;
     }
+   
     public int getBalance() {
         return currentBalance;
     }
+    
+     public void act(){
+            image = new GreenfootImage("Balance: " + bronzeChip.getBalance(), 24, Color.BLACK, new Color(0, 0, 0, 0));
+            setImage(image);
+        }
 }
