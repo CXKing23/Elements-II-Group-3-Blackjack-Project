@@ -10,7 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (Version Number or Date)
  */
 public class hitButton extends button
-{
+{    private boolean wasClicked = false;
     /**
      * Constructor for creating a hitButton.
      * Initializes the button with the default appearance and text.
@@ -23,7 +23,12 @@ public class hitButton extends button
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Hit", 70, 48);
     }
-    
+    public boolean getClickedState(){
+        return wasClicked;
+    }
+    public void setClickedState(boolean bool){
+        wasClicked = bool;
+    }
     /**
      * Method called when the hitButton is clicked.
      * Changes the appearance of the button when clicked and triggers an action.
@@ -45,6 +50,7 @@ public class hitButton extends button
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Hit", 70, 48);    
         // Add functionality here
+        wasClicked = true;
 
 
 

@@ -145,13 +145,13 @@ public void act(){
     if (state == GameState.START_SCREEN) {
 
     }
-    if (state == GameState.BET){
+    else if (state == GameState.BET){
         homeButton.inStartScreen = false;
         if (confirmButton.activate == 1) {
          state = GameState.DEAL;
         }
     }
-    if (state == GameState.DEAL){
+    else if (state == GameState.DEAL){
         if (GameStateDEALCount == 0){
             removeObjects(removeList);
             addObject(deck, 870, 475);
@@ -159,23 +159,55 @@ public void act(){
             addObject(pHand,550, 605);
 
             pHand.add(deck.deal(true));
-            Greenfoot.delay(50);
+            Greenfoot.delay(100);
             dHand.add(deck.deal());
-            Greenfoot.delay(50);
+            Greenfoot.delay(100);
             pHand.add(deck.deal(true));
-            Greenfoot.delay(50);
+            Greenfoot.delay(100);
             dHand.add(deck.deal(true));
-            Greenfoot.delay(50);
+            Greenfoot.delay(100);
             state = GameState.PLAY;
             GameStateDEALCount = 1;
         }
     }
-    if (state == GameState.PLAY){
+    else if (state == GameState.PLAY){
          if (GameStatePLAYCount == 0) {
             addPlayButtons();
             GameStatePLAYCount = 1;
          }
-         if (pHand.getWeight() > 21 || dHand.getWeight() > 21){}
+         if (hitButton.getClickedState()){
+             pHand.add(deck.deal(true));
+             hitButton.setClickedState(false);
+         }
+         if (standButton.getClickedState()){
+             state = GameState.D_PLAY;
+             standButton.setClickedState(false);
+
+         }
+
+         pHand.calculateWeight();
+         if (pHand.getWeight() > 22){
+             state = GameState.FIND_WINNER;
+         }
+    } else if (state == GameState.D_PLAY){
+        dHand.show();
+        dHand.calculateWeight();
+        if (dHand.getWeight() <= 16){
+            Greenfoot.delay(50);
+            dHand.add(deck.deal(true));
+        } else if (dHand.getWeight() >= 17){
+            state = GameState.FIND_WINNER;
+        }
+
+    } else if (state == GameState.FIND_WINNER){
+        if (dHand.getWeight() == pHand.getWeight()){
+            state = GameState.BET;
+        } else if(pHand.getWeight() > dHand.getWeight()) {
+            System.out.println("Player Wins");
+        } else if(pHand.getWeight() < dHand.getWeight()) {
+            System.out.println("Delaer Wins");
+        }
+    
     }
 }
 
