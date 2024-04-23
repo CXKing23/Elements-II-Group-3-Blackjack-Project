@@ -24,43 +24,22 @@ public class GameWorld extends World
     private Currency CurrencyCount = new Currency();
     confirmBet confirmButton = (new confirmBet());
     private ArrayList<Actor> removeList = new ArrayList<>();
+    int GameStateBetCount  = 0;
     int GameStateDEALCount  = 0;
     int GameStatePLAYCount = 0;
-    GreenfootImage image = new GreenfootImage(100, 100);
+    GreenfootImage image = new GreenfootImage(500, 400);
     /**
      * Constructor for objects of class GameWorld.
      */
-    public GameWorld()
+    public GameWorld(GameState state)
     {   
         super(1100, 800, 1);
+        this.state = state;
         if (playButton.background == "background1.png" || playButton.background == "background2.png" || playButton.background == "background3.png"
         || playButton.background == "background4.png"){
-
-            state = GameState.BET;
+            background = playButton.background;
         } 
-        if (state == GameState.BET) {
-
-            // open betting screen and set bet
-
-            bronzeChip BronzeChip = new bronzeChip("Chips/bronze_chip.png");
-            removeList.add(BronzeChip);
-            bronzeChip SilverChip = new bronzeChip("Chips/silver_chip.png");
-            removeList.add(SilverChip);
-            bronzeChip GoldChip = new bronzeChip("Chips/gold_chip.png");
-            removeList.add(GoldChip);
-            bronzeChip allInChip = new bronzeChip("redButton.png");
-            removeList.add(allInChip);
-            removeList.add(confirmButton);
-
-            addObject(BronzeChip, getWidth() / 2-200 , getHeight() / 2 );
-            addObject(SilverChip, getWidth() / 2 , getHeight() / 2 );
-            addObject(GoldChip, getWidth() / 2+200 , getHeight() / 2 );
-            addObject(allInChip , getWidth() / 2 , getHeight() / 2 +150);
-            addObject(confirmButton, getWidth() / 2 , getHeight() / 2 +250);
-            addObject(CurrencyCount, getWidth() / 2 , getHeight() / 2 -200);
-            addObject(homeButton, getWidth() / 2 -450 , getHeight() / 2 );
-
-        }
+        
     }
 
     public GameState getGameState(){
@@ -122,15 +101,43 @@ public class GameWorld extends World
     }
 
     public void act(){
+        setBackground(background);
         if (state == GameState.START_SCREEN) {
-
+            if (GameStateBetCount == 1){
+                GameStateBetCount = 0;
+            }
+            state = GameState.BET;
         }
         else if (state == GameState.BET){
-            homeButton.inStartScreen = false;
-            if (confirmButton.activate == 1) {
-                state = GameState.DEAL;
-                CurrencyCount.setLocation(CurrencyCount.getX()+200, CurrencyCount.getY());
-            }
+            
+            if (GameStateBetCount == 0){
+
+            // open betting screen and set bet
+
+            bronzeChip BronzeChip = new bronzeChip("Chips/bronze_chip.png");
+            removeList.add(BronzeChip);
+            bronzeChip SilverChip = new bronzeChip("Chips/silver_chip.png");
+            removeList.add(SilverChip);
+            bronzeChip GoldChip = new bronzeChip("Chips/gold_chip.png");
+            removeList.add(GoldChip);
+            bronzeChip allInChip = new bronzeChip("redButton.png");
+            removeList.add(allInChip);
+            removeList.add(confirmButton);
+
+            addObject(BronzeChip, getWidth() / 2-200 , getHeight() / 2 );
+            addObject(SilverChip, getWidth() / 2 , getHeight() / 2 );
+            addObject(GoldChip, getWidth() / 2+200 , getHeight() / 2 );
+            addObject(allInChip , getWidth() / 2 , getHeight() / 2 +150);
+            addObject(confirmButton, getWidth() / 2 , getHeight() / 2 +250);
+            addObject(CurrencyCount, getWidth() / 2 , getHeight() / 2 -200);
+            addObject(homeButton, getWidth() / 2 -450 , getHeight() / 2 );
+
+        }
+        homeButton.inStartScreen = false;
+        if (confirmButton.activate == 1) {
+            state = GameState.DEAL;
+            CurrencyCount.setLocation(CurrencyCount.getX()+200, CurrencyCount.getY());
+        }
         }
         else if (state == GameState.DEAL){
             if (GameStateDEALCount == 0){
@@ -201,14 +208,18 @@ public class GameWorld extends World
 
         } else if (state == GameState.FIND_WINNER){
             if (dHand.getWeight() == pHand.getWeight()){
-                state = GameState.BET;
+                
             } else if(pHand.getWeight() > dHand.getWeight()) {
-                image = new GreenfootImage("Player Wins" , 24, Color.BLACK, new Color(0, 0, 0, 0));
+                winnerText WinnerImage = new winnerText("Player Wins");
+                addObject(WinnerImage, 500, 400);
             } else if(pHand.getWeight() < dHand.getWeight()) {
-                System.out.println("Dealer Wins");
+                winnerText WinnerImage = new winnerText("Dealer Wins");
+                addObject(WinnerImage, 500, 400);
             }
+            state = GameState.BET;
             Greenfoot.delay(1000);
-            Greenfoot.setWorld(new StartScreen());
+            Greenfoot.setWorld(new GameWorld(state));
+            //Greenfoot.setWorld(new StartScreen());
 
         }
     }
