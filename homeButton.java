@@ -21,7 +21,8 @@ public class homeButton extends Actor
         if (Greenfoot.mouseClicked(this)) {
             Greenfoot.setWorld(new StartScreen()); 
             if (!inStartScreen) {
-                Greenfoot.setWorld(new warningScreen());
+                GameWorld currentGameWorld = (GameWorld)getWorld();
+                Greenfoot.setWorld(new warningScreen(currentGameWorld));
             }
         }
     }

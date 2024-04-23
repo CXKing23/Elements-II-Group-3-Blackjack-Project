@@ -20,6 +20,7 @@ public class GameWorld extends World
     Deck deck = new Deck(3); 
     BlackjackHand pHand = new BlackjackHand("pHand");
     BlackjackHand dHand = new BlackjackHand("dHand");
+    Currency CurrencyCount = new Currency();
     confirmBet confirmButton = (new confirmBet());
     private ArrayList<Actor> removeList = new ArrayList<>();
     int GameStateDEALCount  = 0;
@@ -38,8 +39,7 @@ public class GameWorld extends World
         if (state == GameState.BET) {
 
             // open betting screen and set bet
-            Currency CurrencyCount = new Currency();
-            removeList.add(CurrencyCount);
+            
             bronzeChip BronzeChip = new bronzeChip("Chips/bronze_chip.png");
             removeList.add(BronzeChip);
             bronzeChip SilverChip = new bronzeChip("Chips/silver_chip.png");
@@ -149,6 +149,7 @@ public void act(){
         homeButton.inStartScreen = false;
         if (confirmButton.activate == 1) {
          state = GameState.DEAL;
+         CurrencyCount.setLocation(CurrencyCount.getX()+200, CurrencyCount.getY());
         }
     }
     else if (state == GameState.DEAL){
@@ -186,14 +187,14 @@ public void act(){
          }
 
          pHand.calculateWeight();
-         if (pHand.getWeight() > 22){
+         if (pHand.getWeight() == -1){
              state = GameState.FIND_WINNER;
          }
     } else if (state == GameState.D_PLAY){
         dHand.show();
         dHand.calculateWeight();
-        if (dHand.getWeight() <= 16){
-            Greenfoot.delay(50);
+        if ((dHand.getWeight() <= 16) && (dHand.getWeight() > 0 )){
+            Greenfoot.delay(100);
             dHand.add(deck.deal(true));
         } else if (dHand.getWeight() >= 17){
             state = GameState.FIND_WINNER;

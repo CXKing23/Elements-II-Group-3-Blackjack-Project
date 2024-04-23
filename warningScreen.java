@@ -8,16 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class warningScreen extends World
 {
-
+    public GameWorld currentGameWorld;
     /**
      * Constructor for objects of class warningScreen.
      * 
      */
-    public warningScreen()
+    public warningScreen(GameWorld currentGameWorld)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1100, 800, 1); 
-        
+        this.currentGameWorld = currentGameWorld;
         setBackground("recycpap.jpg");
         addObject(new warningText(), getWidth() / 2 , getHeight() / 2-200 );
         addObject(new yesButton(), getWidth() / 2-200 , getHeight() / 2+100 );
