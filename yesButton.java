@@ -22,8 +22,6 @@ public class yesButton extends button
             image.setFont(new Font("Arial", true, false, 24));
             image.drawString("Yes", 60, 48);
         }
-
-    
     public void onClick() {
         image = new GreenfootImage("redButton.png");
         image.scale(170,80);

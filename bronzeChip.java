@@ -46,16 +46,16 @@ public class bronzeChip extends button
     }
     
     public void onClick(){
-    if(currentBalance>0){
+    if(chipBalance>0){
         if(chipType.equals("bronze")){
-            currentBalance = currentBalance-=10;
-            chipBalance = currentBalance;
+            chipBalance-=10;
+            chipBalance = chipBalance;
         } else if (chipType.equals("silver")) {
-            currentBalance-=50;
-             chipBalance = currentBalance;
+            chipBalance-=50;
+            chipBalance = chipBalance;
         } else if (chipType.equals("gold")) {
-            currentBalance-=100;
-            chipBalance = currentBalance;
+            chipBalance-=100;
+            chipBalance = chipBalance;
     }else{
         image= new GreenfootImage("redButton.png");
         image.scale(170,80);
