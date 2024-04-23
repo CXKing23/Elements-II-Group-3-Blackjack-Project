@@ -20,6 +20,7 @@ public class playButton extends button
         image.setColor(Color.BLACK); 
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Play", 60, 48);
+        background = "background1.png";
     }
     public void onClick(){
         image = new GreenfootImage("redButton.png");
@@ -35,10 +36,10 @@ public class playButton extends button
         image.setColor(Color.BLACK); 
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Play", 60, 48);
-        background = "background1.png";
+        
         if(count == 0){
             Greenfoot.setWorld(new background(background));
-            
+            background = "background1.png";
         }else if(count == 1){
             background = "background2.png";
             Greenfoot.setWorld(new background(background));
@@ -51,6 +52,7 @@ public class playButton extends button
             background = "background4.png";
             Greenfoot.setWorld(new background(background));
             
+        }
+        bronzeChip.chipBalance = 1000;
     }
-}
 }

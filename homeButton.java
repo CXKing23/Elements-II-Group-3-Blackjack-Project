@@ -12,13 +12,20 @@ public class homeButton extends Actor
      * Act - do whatever the homeButton wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public boolean inStartScreen = true;
+    public homeButton(){
+        
+    }
     public void act() {
         setImage("castle.png");
         if (Greenfoot.mouseClicked(this)) {
-            Greenfoot.setWorld(new StartScreen());  
+            Greenfoot.setWorld(new StartScreen()); 
+            if (!inStartScreen) {
+                Greenfoot.setWorld(new warningScreen());
+            }
         }
-        //if(Greenfoot.setWorld(new background()) == (new background())){
-           // Greenfoot.setWorld(new warningScreen());
     }
+
 }
+
 

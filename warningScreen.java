@@ -19,6 +19,9 @@ public class warningScreen extends World
         super(1100, 800, 1); 
         
         setBackground("recycpap.jpg");
+        addObject(new warningText(), getWidth() / 2 , getHeight() / 2-200 );
+        addObject(new yesButton(), getWidth() / 2 , getHeight() / 2+100 );
+    }
         
     }
-}
+
