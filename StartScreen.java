@@ -19,7 +19,6 @@ public class StartScreen extends World
         super(1100, 800, 1); 
         addObject(new playButton(), getWidth() / 2 , getHeight() / 2 -50);
         addObject(new settingsButton(), getWidth() / 2 , getHeight() / 2 +30);
-    
         setBackground("Start Up.png");
         prepare();
     }

@@ -22,7 +22,7 @@ public class BlackjackGame extends CardGame
      */
     public BlackjackGame(int numberOfDecks, int maxNumberOfHands)
     {
-        super(numberOfDecks);    // Call the constructor of the superclass
+        super(numberOfDecks);                        // Call the constructor of the superclass
         hands = new BlackjackHand[maxNumberOfHands]; // Initialize the array for player hands
         dealer = new BlackjackHand("Dealer");        // Initialize the dealer's hand
         numberOfHands = 0;                           // Initialize the number of players
