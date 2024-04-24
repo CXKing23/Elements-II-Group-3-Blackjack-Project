@@ -15,6 +15,9 @@ public class switchButton extends button
 
     public void onClick() {
         count++; 
+        if(count == 4){
+            count = 0;
+        }
         image= new GreenfootImage("redButton.png");
         image.scale(170,80);
         setImage(image);
@@ -29,9 +32,7 @@ public class switchButton extends button
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Switch", 50, 48);
 
-        if(count == 4){
-            count = 0;
-        }
+        
     }
     public static int getCount() {
         return count;
