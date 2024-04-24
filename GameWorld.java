@@ -36,6 +36,7 @@ public class GameWorld extends World
     GreenfootImage push = new GreenfootImage("Draw!", 100, Color.BLACK, Color.WHITE);
     private int startingBalance;
 
+
     /**
      * Constructor for objects of class GameWorld.
      */
@@ -118,7 +119,6 @@ public class GameWorld extends World
     }
 
     public void act(){
-        
         if (state == GameState.START_SCREEN) {
             if (GameStateBetCount == 1){
                 GameStateBetCount = 0;
@@ -238,6 +238,7 @@ public class GameWorld extends World
             GreenfootImage currentBackground = new GreenfootImage(getBackground());
             setBackground(currentBackground);
             if (dHand.getWeight() == pHand.getWeight()){
+
                 //currentBackground.drawImage(push, 250, 400);
             } else if(pHand.getWeight() > dHand.getWeight() || dHand.getWeight() == -1) {
                 //winnerText WinnerImage = new winnerText("Player Wins");
@@ -271,6 +272,22 @@ public class GameWorld extends World
                 }
         } else if (state == GameState.RESET) {
              Greenfoot.delay(250);
+                getBackground().drawImage(push, 250, 400);
+            } else if(pHand.getWeight() > dHand.getWeight() || dHand.getWeight() == -1) {
+                //winnerText WinnerImage = new winnerText("Player Wins");
+                //addObject(WinnerImage, 500, 400);
+                getBackground().drawImage(pWins, 250, 400);
+            } else if(pHand.getWeight() < dHand.getWeight() || pHand.getWeight() == -1) {
+                //winnerText WinnerImage = new winnerText("Dealer Wins");
+                //addObject(WinnerImage, 500, 400);
+                getBackground().drawImage(dWins, 250, 400);
+            }
+            state = GameState.BET;
+            Greenfoot.delay(500);
+            Greenfoot.setWorld(new GameWorld(state));
+            //Greenfoot.setWorld(new StartScreen());
+
+
         }
     }
 
