@@ -11,6 +11,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class hitButton extends button
 {    private boolean wasClicked = false;
+    private String name = "Hit";
     /**
      * Constructor for creating a hitButton.
      * Initializes the button with the default appearance and text.
@@ -21,7 +22,7 @@ public class hitButton extends button
         setImage(image);
         image.setColor(Color.BLACK); 
         image.setFont(new Font("Arial", true, false, 24));
-        image.drawString("Hit", 70, 48);
+        image.drawString(name, 70, 48);
     }
 
     public hitButton(String name){
@@ -29,7 +30,8 @@ public class hitButton extends button
         setImage(image);
         image.setColor(Color.BLACK);
         image.setFont(new Font("Arial", true, false, 24));
-        image.drawString(name, 70, 48);
+        this.name = name;
+        image.drawString(this.name, 70, 48);
     }
     
     public boolean getClickedState(){
@@ -48,7 +50,7 @@ public class hitButton extends button
         setImage(image);
         image.setColor(Color.BLACK); 
         image.setFont(new Font("Arial", true, false, 24));
-        image.drawString("Hit", 70, 48);
+        image.drawString(this.name, 70, 48);
 
         Greenfoot.delay(duration);
         GreenfootImage image = new GreenfootImage("activeButton.png");
@@ -57,7 +59,7 @@ public class hitButton extends button
         setImage(image);
         image.setColor(Color.BLACK); 
         image.setFont(new Font("Arial", true, false, 24));
-        image.drawString("Hit", 70, 48);    
+        image.drawString(this.name, 70, 48);    
         // Add functionality here
         wasClicked = true;
 

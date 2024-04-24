@@ -13,7 +13,7 @@ public class Currency extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     static int currentBalance;
-    int Bet; 
+    static int Bet; 
     static final int startingBalance = 1000;
     GreenfootImage image; 
     public Currency()
