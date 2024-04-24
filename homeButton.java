@@ -20,8 +20,9 @@ public class homeButton extends Actor
         setImage("castle.png");
         if (Greenfoot.mouseClicked(this)) {
             Greenfoot.setWorld(new StartScreen()); 
-            if (!inStartScreen) {
-                Greenfoot.setWorld(new warningScreen());
+            if (!inStartScreen)  {
+                GameWorld currentGameWorld = (GameWorld)getWorld();
+                Greenfoot.setWorld(new warningScreen(currentGameWorld));
             }
         }
     }

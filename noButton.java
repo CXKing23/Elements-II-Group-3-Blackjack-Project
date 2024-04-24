@@ -38,5 +38,7 @@ public class noButton extends button
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("No", 70, 48);
         //add Functionality
+        warningScreen currentWarningScreen = (warningScreen)getWorld();
+        Greenfoot.setWorld(currentWarningScreen.currentGameWorld);
     }
 }

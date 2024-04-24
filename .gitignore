@@ -4,3 +4,4 @@ README.TXT
 .DS_Store
 /.idea/
 *.iml
+/doc/

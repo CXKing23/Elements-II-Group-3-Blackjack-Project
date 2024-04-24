@@ -8,24 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class bronzeChip extends button
 {
-    /**
-     * Act - do whatever the chips wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    
+
     String chipType;
+    private static final int BRONZE_CHIP_VALUE = 10;
+    private static final int SILVER_CHIP_VALUE = 50;
+    private static final int GOLD_CHIP_VALUE = 100;
+    private static final int startingBalance = 10000;
+
     public static Currency balance = new Currency();
-    public static int currentBalance = balance.getBalance();
-    public static int chipBalance = currentBalance;
-    
-    
-    
-    
-     /**
-         * Constructor that initializes this blackjack hand and sets the name.
-         * 
-         * @param filename the filename for the image
-         */
+    public static int currentBalance = startingBalance;
+    public static int betBalance = 0;
+
+    /**
+     * Constructor that initializes this blackjack hand and sets the name.
+     * 
+     * @param filename the filename for the image
+     */
     public bronzeChip(String filename) {
         super(filename);
         if (filename.equals("Chips/bronze_chip.png")) {
@@ -44,41 +42,92 @@ public class bronzeChip extends button
             chipType = "All In";
         }
     }
-    
-    public void onClick(){
-    if(chipBalance>0){
-        if(chipType.equals("bronze")){
-            chipBalance-=10;
-            chipBalance = chipBalance;
-        } else if (chipType.equals("silver")) {
-            chipBalance-=50;
-            chipBalance = chipBalance;
-        } else if (chipType.equals("gold")) {
-            chipBalance-=100;
-            chipBalance = chipBalance;
-    }else{
-        image= new GreenfootImage("redButton.png");
-        image.scale(170,80);
-        setImage(image);
-        image.setColor(Color.BLACK); 
-        image.setFont(new Font("Arial", true, false, 24));
-        image.drawString("All In", 55, 48);
-        Greenfoot.delay(duration);
-        GreenfootImage image = new GreenfootImage("activeButton.png");
-        image.scale(170,80);
-        setImage(image);
-        image.setColor(Color.BLACK); 
-        image.setFont(new Font("Arial", true, false, 24));
-        image.drawString("All In", 55, 48);    
-        currentBalance-=currentBalance;
-        chipBalance = currentBalance;
+
+    public void onLeftClick(){
+        if(currentBalance>0){
+            if(chipType.equals("bronze") && (currentBalance - BRONZE_CHIP_VALUE >= 0 )){
+
+                betBalance+=BRONZE_CHIP_VALUE;
+                currentBalance-=BRONZE_CHIP_VALUE;
+                betBalance = betBalance;
+            } else if (chipType.equals("silver") && (currentBalance  - SILVER_CHIP_VALUE >= 0)) {
+                betBalance+=SILVER_CHIP_VALUE;
+                currentBalance-=SILVER_CHIP_VALUE;
+                betBalance = betBalance;
+            } else if (chipType.equals("gold") && (currentBalance  - GOLD_CHIP_VALUE >= 0)) {
+                betBalance+=GOLD_CHIP_VALUE;
+                currentBalance-=GOLD_CHIP_VALUE;
+                betBalance = betBalance;
+            } else if (chipType.equals("All In")) {
+                image= new GreenfootImage("redButton.png");
+                image.scale(170,80);
+                setImage(image);
+                image.setColor(Color.BLACK); 
+                image.setFont(new Font("Arial", true, false, 24));
+                image.drawString("All In", 55, 48);
+                Greenfoot.delay(duration);
+                GreenfootImage image = new GreenfootImage("activeButton.png");
+                image.scale(170,80);
+                setImage(image);
+                image.setColor(Color.BLACK); 
+                image.setFont(new Font("Arial", true, false, 24));
+                image.drawString("All In", 55, 48); 
+                betBalance+=currentBalance;
+                currentBalance=0;
+            }
+        }
     }
+
+    public void onRightClick(){
+            if(betBalance>0){
+                if(chipType.equals("bronze") && (betBalance - BRONZE_CHIP_VALUE >= 0 )){
+                    betBalance-=BRONZE_CHIP_VALUE;
+                    currentBalance+=BRONZE_CHIP_VALUE;
+                    betBalance = betBalance;
+                } else if (chipType.equals("silver")&& (betBalance  - SILVER_CHIP_VALUE >= 0)) {
+                    betBalance-=SILVER_CHIP_VALUE;
+                    currentBalance+=SILVER_CHIP_VALUE;
+                    betBalance = betBalance;
+                } else if (chipType.equals("gold")&& (betBalance  - GOLD_CHIP_VALUE >= 0)) {
+                    betBalance-=GOLD_CHIP_VALUE;
+                    currentBalance+=GOLD_CHIP_VALUE;
+                    betBalance = betBalance;
+                } else if (chipType.equals("All In")) {
+                    image= new GreenfootImage("redButton.png");
+                    image.scale(170,80);
+                    setImage(image);
+                    image.setColor(Color.BLACK); 
+                    image.setFont(new Font("Arial", true, false, 24));
+                    image.drawString("All In", 55, 48);
+                    Greenfoot.delay(duration);
+                    GreenfootImage image = new GreenfootImage("activeButton.png");
+                    image.scale(170,80);
+                    setImage(image);
+                    image.setColor(Color.BLACK); 
+                    image.setFont(new Font("Arial", true, false, 24));
+                    image.drawString("All In", 55, 48);    
+                    currentBalance+=betBalance;
+                    betBalance = 0;
+                }
+            }
+        }
+
+    public void act() {
+        if (Greenfoot.mousePressed(this) && (Greenfoot.getMouseInfo().getButton() == 1)) {
+            onLeftClick();
+        }
+        else if (Greenfoot.mousePressed(this) && (Greenfoot.getMouseInfo().getButton() == 3)) {
+            onRightClick();
+        }
+    }
+
+    public static int getBalance(){
+        return currentBalance;
+    }
+
+    public static int getbetBalance(){
+        return betBalance;
     }
 }
-        
-public static int getBalance(){
-    return chipBalance;
-}
-    }
 
 

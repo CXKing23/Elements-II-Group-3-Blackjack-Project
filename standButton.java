@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class standButton extends button
 {
+    private boolean wasClicked = false;
     /**
      * Act - do whatever the hitButton wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -20,6 +21,14 @@ public class standButton extends button
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Stand", 50, 48);
     }
+
+    public boolean getClickedState(){
+        return wasClicked;
+    }
+    public void setClickedState(boolean bool){
+        wasClicked = bool;
+    }
+    
     public void onClick(){
         image= new GreenfootImage("redButton.png");
         image.scale(170,80);
@@ -35,5 +44,7 @@ public class standButton extends button
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Stand", 50, 48);    
         //add functionality here
+        wasClicked = true;
+
     }
 }
