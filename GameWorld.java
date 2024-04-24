@@ -30,6 +30,7 @@ public class GameWorld extends World
     GreenfootImage image = new GreenfootImage(500, 400);
     GreenfootImage pWins = new GreenfootImage("You Win!", 100, Color.BLACK, Color.WHITE);
     GreenfootImage dWins = new GreenfootImage("Dealer Wins!", 100, Color.BLACK, Color.WHITE);
+    GreenfootImage push = new GreenfootImage("Draw!", 100, Color.BLACK, Color.WHITE);
 
     /**
      * Constructor for objects of class GameWorld.
@@ -220,11 +221,13 @@ public class GameWorld extends World
                 state = GameState.FIND_WINNER;
             } else if (pHand.getWeight() == 22){
                 state = GameState.FIND_WINNER;
+            } else if(dHand.getWeight() == -1){
+                state = GameState.FIND_WINNER;
             }
 
         } else if (state == GameState.FIND_WINNER){
             if (dHand.getWeight() == pHand.getWeight()){
-                
+                getBackground().drawImage(push, 250, 400);
             } else if(pHand.getWeight() > dHand.getWeight() || dHand.getWeight() == -1) {
                 //winnerText WinnerImage = new winnerText("Player Wins");
                 //addObject(WinnerImage, 500, 400);
@@ -233,7 +236,7 @@ public class GameWorld extends World
                 //winnerText WinnerImage = new winnerText("Dealer Wins");
                 //addObject(WinnerImage, 500, 400);
                 getBackground().drawImage(dWins, 250, 400);
-            }
+            } 
             state = GameState.BET;
             Greenfoot.delay(500);
             Greenfoot.setWorld(new GameWorld(state));
