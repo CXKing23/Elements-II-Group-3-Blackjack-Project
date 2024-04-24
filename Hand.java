@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Hand extends Deck
 {
-    private  String name;
+    protected  String name;
 
     /**
      * Constructor that intializes the instance of hand to name.

@@ -13,12 +13,13 @@ public class Currency extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     static int currentBalance;
-    static int Bet; 
+    static int betBalance; 
     static final int startingBalance = 1000;
     GreenfootImage image; 
     public Currency()
     {
-        currentBalance = startingBalance;
+        currentBalance = bronzeChip.getBalance();
+        betBalance = bronzeChip.getbetBalance();
         setImage(image);
     }
     public void setBalance(int newBalance){
@@ -30,7 +31,7 @@ public class Currency extends Actor
     }
     
      public void act(){
-            image = new GreenfootImage("Balance: " + bronzeChip.getBalance(), 24, Color.BLACK, new Color(0, 0, 0, 0));
+            image = new GreenfootImage("Balance: " + bronzeChip.getBalance() + "\n" + "Bet: " + bronzeChip.getbetBalance(), 24, Color.BLACK, new Color(0, 0, 0, 0));
             setImage(image);
-        }
+            }
 }

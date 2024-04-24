@@ -112,6 +112,22 @@ public class BlackjackHand extends Hand
         showWeight();
     }
     
+    
+    public void addCardFromDeck(Deck aDeck, boolean isFaceUp)
+        {
+        if (this.name.equals( "dHand")){
+            Card aCard = aDeck.deal(isFaceUp);
+                while (aCard.isSpecial()){
+                    aCard = aDeck.deal(isFaceUp);
+                }
+            super.add(aCard);    
+        } else {
+            super.add(aDeck.deal());
+        }   
+        calculateWeight();
+        showWeight();
+    }
+    
     /**
      * Makes all the cards in this blackjack hand face up.
      */

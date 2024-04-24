@@ -58,6 +58,6 @@ public class playButton extends button
         image.drawString("Play", 60, 48);
         updateBackground();
         
-        bronzeChip.chipBalance = 1000;
+        bronzeChip.currentBalance = 1000;
     }
 }

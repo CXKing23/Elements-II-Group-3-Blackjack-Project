@@ -14,7 +14,8 @@ public class Card extends Actor
     private Suit suit;         // Suit of the card
     private GreenfootImage backImage; // Image for the back of the card
     private GreenfootImage faceImage; // Image for the face of the card
-    private boolean isFaceUp;  // Flag indicating if the card is face-up or face-down
+    private boolean isFaceUp;  // Bool indicating if the card is face-up or face-down
+    private boolean isSpecial = false;
 
     /**
      * Constructor for creating a card with specified rank and suit.
@@ -31,13 +32,15 @@ public class Card extends Actor
      * 
      * @param rank The rank of the card.
      * @param suit The suit of the card.
-     * @param isFaceUp Flag indicating whether the card is face-up or face-down.
+     * @param isFaceUp Boolean indicating whether the card is face-up or face-down.
      */
     public Card(Rank rank, Suit suit, Boolean isFaceUp) {
         this.isFaceUp = isFaceUp; // Set the face-up status
         this.rank =  rank;        // Set the rank
         this.suit = suit;         // Set the suit
-        
+        if (suit == Suit.SPECIAL) {
+            isSpecial = true;
+        }
         // Determine the folder and filename for the card image based on the suit
         String suitName = "earth";
         String folderName = "EarthCards";
@@ -61,6 +64,7 @@ public class Card extends Actor
         }
         
         // Load the appropriate image for the face of the card
+     
         faceImage = new GreenfootImage(folderName+"/"+rank.getRank()+"_of_" + suitName + ".png");
         
         // Load the image for the back of the card
@@ -111,6 +115,14 @@ public class Card extends Actor
     public Rank getRank() {
         return rank;
     }
+    /**
+     * Method to cehck if the card is a Special card or not.
+     * 
+     * @return True if the card is a Special card .
+     */
+    public boolean isSpecial() {
+        return isSpecial;
+    }
 
     /**
      * Method to get the suit of the card.
@@ -120,7 +132,6 @@ public class Card extends Actor
     public Suit getSuit(){
         return suit;
     }
-
     /**
      * Act method.
      * This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.
