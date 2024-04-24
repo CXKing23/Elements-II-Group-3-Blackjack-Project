@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class GameWorld extends World
 {
-    public GameState state;
+    public GameState state = GameState.START_SCREEN;
     String background;
     // buttons
     private hitButton hitButton = new hitButton();
@@ -30,7 +30,6 @@ public class GameWorld extends World
     GreenfootImage image = new GreenfootImage(500, 400);
     GreenfootImage pWins = new GreenfootImage("You Win!", 100, Color.BLACK, Color.WHITE);
     GreenfootImage dWins = new GreenfootImage("Dealer Wins!", 100, Color.BLACK, Color.WHITE);
-    GreenfootImage push = new GreenfootImage("Draw!", 100, Color.BLACK, Color.WHITE);
 
     /**
      * Constructor for objects of class GameWorld.
@@ -39,10 +38,7 @@ public class GameWorld extends World
     {   
         super(1100, 800, 1);
         this.state = state;
-        if (playButton.background == "background1.png" || playButton.background == "background2.png" || playButton.background == "background3.png"
-        || playButton.background == "background4.png"){
-            background = playButton.background;
-        } 
+        background = playButton.background;
         
     }
 
@@ -50,6 +46,7 @@ public class GameWorld extends World
     {   
         super(1100, 800, 1);
         StartScreen();
+        playButton.updateBackground();
         if (playButton.background == "background1.png" || playButton.background == "background2.png" || playButton.background == "background3.png"
         || playButton.background == "background4.png"){
             //background = playButton.background;
@@ -116,7 +113,6 @@ public class GameWorld extends World
     }
 
     public void act(){
-        setBackground(background);
         if (state == GameState.START_SCREEN) {
             if (GameStateBetCount == 1){
                 GameStateBetCount = 0;
@@ -221,13 +217,11 @@ public class GameWorld extends World
                 state = GameState.FIND_WINNER;
             } else if (pHand.getWeight() == 22){
                 state = GameState.FIND_WINNER;
-            } else if(dHand.getWeight() == -1){
-                state = GameState.FIND_WINNER;
             }
 
         } else if (state == GameState.FIND_WINNER){
             if (dHand.getWeight() == pHand.getWeight()){
-                getBackground().drawImage(push, 250, 400);
+                
             } else if(pHand.getWeight() > dHand.getWeight() || dHand.getWeight() == -1) {
                 //winnerText WinnerImage = new winnerText("Player Wins");
                 //addObject(WinnerImage, 500, 400);
@@ -236,7 +230,7 @@ public class GameWorld extends World
                 //winnerText WinnerImage = new winnerText("Dealer Wins");
                 //addObject(WinnerImage, 500, 400);
                 getBackground().drawImage(dWins, 250, 400);
-            } 
+            }
             state = GameState.BET;
             Greenfoot.delay(500);
             Greenfoot.setWorld(new GameWorld(state));
