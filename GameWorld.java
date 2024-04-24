@@ -18,19 +18,24 @@ public class GameWorld extends World
     private settingsButton settingsButton = new settingsButton();
     private homeButton homeButton = new homeButton();
     private hitButton abilityButton = new hitButton("Activate Witch");
+    private hitButton continueButton = new hitButton("Continue");
     private Deck deck = new Deck(3); 
     private BlackjackHand pHand = new BlackjackHand("pHand");
     private BlackjackHand dHand = new BlackjackHand("dHand");
     private Currency CurrencyCount = new Currency();
-    confirmBet confirmButton = (new confirmBet());
-    private ArrayList<Actor> removeList = new ArrayList<>();
-    int GameStateBetCount  = 0;
-    int GameStateDEALCount  = 0;
-    int GameStatePLAYCount = 0;
+    private confirmBet confirmButton = (new confirmBet());
+    private ArrayList<Actor> removeListBet = new ArrayList<>();
+    private ArrayList<Actor> removeListPlay = new ArrayList<>();
+    private int bet = 0;
+    private int GameStateBetCount  = 0;
+    private int GameStateDEALCount  = 0;
+    private int GameStatePLAYCount = 0;
     GreenfootImage image = new GreenfootImage(500, 400);
     GreenfootImage pWins = new GreenfootImage("You Win!", 100, Color.BLACK, Color.WHITE);
     GreenfootImage dWins = new GreenfootImage("Dealer Wins!", 100, Color.BLACK, Color.WHITE);
     GreenfootImage push = new GreenfootImage("Draw!", 100, Color.BLACK, Color.WHITE);
+    private int startingBalance;
+
 
     /**
      * Constructor for objects of class GameWorld.
@@ -121,20 +126,20 @@ public class GameWorld extends World
             state = GameState.BET;
         }
         else if (state == GameState.BET){
-            
+            startingBalance = CurrencyCount.currentBalance;
             if (GameStateBetCount == 0){
 
             // open betting screen and set bet
 
             bronzeChip BronzeChip = new bronzeChip("Chips/bronze_chip.png");
-            removeList.add(BronzeChip);
+            removeListBet.add(BronzeChip);
             bronzeChip SilverChip = new bronzeChip("Chips/silver_chip.png");
-            removeList.add(SilverChip);
+            removeListBet.add(SilverChip);
             bronzeChip GoldChip = new bronzeChip("Chips/gold_chip.png");
-            removeList.add(GoldChip);
+            removeListBet.add(GoldChip);
             bronzeChip allInChip = new bronzeChip("redButton.png");
-            removeList.add(allInChip);
-            removeList.add(confirmButton);
+            removeListBet.add(allInChip);
+            removeListBet.add(confirmButton);
 
             addObject(BronzeChip, getWidth() / 2-200 , getHeight() / 2 );
             addObject(SilverChip, getWidth() / 2 , getHeight() / 2 );
@@ -143,21 +148,25 @@ public class GameWorld extends World
             addObject(confirmButton, getWidth() / 2 , getHeight() / 2 +250);
             addObject(CurrencyCount, getWidth() / 2 , getHeight() / 2 -200);
             addObject(homeButton, getWidth() / 2 -450 , getHeight() / 2 );
-
+            
         }
         homeButton.inStartScreen = false;
         if (confirmButton.activate == 1) {
             state = GameState.DEAL;
-            CurrencyCount.setLocation(CurrencyCount.getX()+200, CurrencyCount.getY());
+            bet = startingBalance - CurrencyCount.currentBalance;
+            CurrencyCount.setLocation(getWidth() / 2 + 200, CurrencyCount.getY());
+            confirmButton.activate = 0;
         }
         }
         else if (state == GameState.DEAL){
             if (GameStateDEALCount == 0){
-                removeObjects(removeList);
+                removeObjects(removeListBet);
                 addObject(deck, 870, 475);
                 addObject(dHand,550, 260);
                 addObject(pHand,550, 605);
-
+                removeListPlay.add(deck);
+                removeListPlay.add(dHand);
+                removeListPlay.add(pHand);
                 pHand.add(deck.deal(true));
                 Greenfoot.delay(100);
                 dHand.add(deck.deal());
@@ -173,6 +182,9 @@ public class GameWorld extends World
         else if (state == GameState.PLAY){
             if (GameStatePLAYCount == 0) {
                 addPlayButtons();
+                removeListPlay.add(hitButton);
+                removeListPlay.add(standButton);
+
                 GameStatePLAYCount = 1;
             }
             if (hitButton.getClickedState()){
@@ -223,7 +235,43 @@ public class GameWorld extends World
             }
 
         } else if (state == GameState.FIND_WINNER){
+            GreenfootImage currentBackground = new GreenfootImage(getBackground());
+            setBackground(currentBackground);
             if (dHand.getWeight() == pHand.getWeight()){
+
+                //currentBackground.drawImage(push, 250, 400);
+            } else if(pHand.getWeight() > dHand.getWeight() || dHand.getWeight() == -1) {
+                //winnerText WinnerImage = new winnerText("Player Wins");
+                //addObject(WinnerImage, 500, 400);
+                //currentBackground.drawImage(pWins, 250, 400);
+                if (pHand.getWeight() == 22){
+                    CurrencyCount.currentBalance = bet * 3;
+                } else {
+                CurrencyCount.currentBalance = bet * 2;
+                }
+                
+            } else if(pHand.getWeight() < dHand.getWeight() || pHand.getWeight() == -1) {
+                //winnerText WinnerImage = new winnerText("Dealer Wins");
+                //addObject(WinnerImage, 500, 400);
+                //currentBackground.drawImage(dWins, 250, 400);
+            }
+            addObject(continueButton, 500, 500);
+            if (continueButton.getClickedState()){
+                continueButton.setClickedState(false);
+               
+                removeObject(continueButton);
+                setBackground(background);            
+                removeObjects(removeListPlay);
+                state = GameState.BET;
+                Greenfoot.delay(500);
+                GameStateDEALCount = 0;
+                GameStatePLAYCount = 0;
+                pHand = new BlackjackHand("pHand");
+                dHand = new BlackjackHand("dHand");
+                //Greenfoot.setWorld(new StartScreen());
+                }
+        } else if (state == GameState.RESET) {
+             Greenfoot.delay(250);
                 getBackground().drawImage(push, 250, 400);
             } else if(pHand.getWeight() > dHand.getWeight() || dHand.getWeight() == -1) {
                 //winnerText WinnerImage = new winnerText("Player Wins");
@@ -238,6 +286,7 @@ public class GameWorld extends World
             Greenfoot.delay(500);
             Greenfoot.setWorld(new GameWorld(state));
             //Greenfoot.setWorld(new StartScreen());
+
 
         }
     }
