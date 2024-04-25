@@ -173,7 +173,7 @@ public class BlackjackHand extends Hand
             GreenfootImage image = getImage();
             GreenfootImage newImage = new GreenfootImage(image.getWidth(), image.getHeight() + 30);
             newImage.setFont(new Font(true, false, 30));
-            newImage.setColor(Color.WHITE);
+            newImage.setColor(Color.BLACK);
             newImage.drawImage(image,0,0);
             String value = weight + "";
             int pos = 20;
