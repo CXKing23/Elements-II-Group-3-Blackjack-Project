@@ -10,14 +10,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (Version Number or Date)
  */
 public class hitButton extends button
-{    private boolean wasClicked = false;
+{   private boolean wasClicked = false;
     private String name = "Hit";
     /**
      * Constructor for creating a hitButton.
      * Initializes the button with the default appearance and text.
      */
     GreenfootImage image = new GreenfootImage("activeButton.png");
+    int width = 70;
+    
     public hitButton(){
+        image = new GreenfootImage("activeButton.png");
         image.scale(170,80);
         setImage(image);
         image.setColor(Color.BLACK); 
@@ -26,12 +29,18 @@ public class hitButton extends button
     }
 
     public hitButton(String name){
+        if (name.equals("Continue")){
+            width = 35;
+        } else if (name.equals("Activate")){
+            width = 35;
+        }
+        image = new GreenfootImage("activeButton.png");
         image.scale(170,80);
         setImage(image);
         image.setColor(Color.BLACK);
         image.setFont(new Font("Arial", true, false, 24));
         this.name = name;
-        image.drawString(this.name, 70, 48);
+        image.drawString(this.name, width, 48);
     }
     
     public boolean getClickedState(){
@@ -50,16 +59,16 @@ public class hitButton extends button
         setImage(image);
         image.setColor(Color.BLACK); 
         image.setFont(new Font("Arial", true, false, 24));
-        image.drawString(this.name, 70, 48);
+        image.drawString(this.name, width, 48);
 
         Greenfoot.delay(duration);
+        
         GreenfootImage image = new GreenfootImage("activeButton.png");
-
         image.scale(170,80);
         setImage(image);
         image.setColor(Color.BLACK); 
         image.setFont(new Font("Arial", true, false, 24));
-        image.drawString(this.name, 70, 48);    
+        image.drawString(this.name, width, 48);    
         // Add functionality here
         wasClicked = true;
 

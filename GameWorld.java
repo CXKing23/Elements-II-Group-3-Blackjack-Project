@@ -31,9 +31,9 @@ public class GameWorld extends World
     private int GameStateDEALCount  = 0;
     private int GameStatePLAYCount = 0;
     GreenfootImage image = new GreenfootImage(500, 400);
-    GreenfootImage pWins = new GreenfootImage("You Win!", 100, Color.BLACK, Color.WHITE);
-    GreenfootImage dWins = new GreenfootImage("Dealer Wins!", 100, Color.BLACK, Color.WHITE);
-    GreenfootImage push = new GreenfootImage("Draw!", 100, Color.BLACK, Color.WHITE);
+    GreenfootImage pWins = new GreenfootImage("You Win!", 100, Color.GREEN, new Color(0, 0, 0, 0));
+    GreenfootImage dWins = new GreenfootImage("Dealer Wins!", 100, Color.RED, new Color(0, 0, 0, 0));
+    GreenfootImage push = new GreenfootImage("Draw!", 100, Color.BLACK, new Color(0, 0, 0, 0));
     private int startingBalance;
 
     /**
@@ -99,11 +99,14 @@ public class GameWorld extends World
     }
 
     public void act(){
-
+        if (deck.numOfCards < 8){
+            deck = new Deck(3);
+            }
         if (state == GameState.START_SCREEN) {
             state = GameState.BET;
         }
         else if (state == GameState.BET){
+           
             BackgroundImage = new GreenfootImage(getBackground());
             startingBalance = CurrencyCount.currentBalance;
             if (GameStateBetCount == 0){
@@ -169,6 +172,7 @@ public class GameWorld extends World
         else if (state == GameState.PLAY){
             if (GameStatePLAYCount == 0) {
                 addPlayButtons();
+                hitButton.setClickedState(false);
                 removeListPlay.add(hitButton);
                 removeListPlay.add(standButton);
 
@@ -212,6 +216,7 @@ public class GameWorld extends World
                 dHand.show();
             }
         } else if (state == GameState.D_PLAY){
+            removeObject(abilityButton);
             dHand.show();
             dHand.calculateWeight();
             if ((dHand.getWeight() <= 16) && (dHand.getWeight() > 0 )){
@@ -229,12 +234,12 @@ public class GameWorld extends World
             GreenfootImage currentBackground = new GreenfootImage(getBackground());
             setBackground(currentBackground);
             if (dHand.getWeight() == pHand.getWeight()){
-                currentBackground.drawImage(push, 250, 400);
+                currentBackground.drawImage(push, getWidth() / 2 - 160, getHeight() / 2 - 20);
                 bronzeChip.currentBalance += bronzeChip.betBalance;
             } else if(pHand.getWeight() > dHand.getWeight() || dHand.getWeight() == -1) {
                 //winnerText WinnerImage = new winnerText("Player Wins");
                 //addObject(WinnerImage, 500, 400);
-                currentBackground.drawImage(pWins, 250, 400);
+                currentBackground.drawImage(pWins, getWidth() / 2 - 160 , getHeight() / 2 - 20);
                 if (pHand.getWeight() == 22){
                     bronzeChip.currentBalance += bronzeChip.betBalance * 3;
                 } else {
@@ -243,10 +248,10 @@ public class GameWorld extends World
             } else if(pHand.getWeight() < dHand.getWeight() || pHand.getWeight() == -1) {
                 //winnerText WinnerImage = new winnerText("Dealer Wins");
                 //addObject(WinnerImage, 500, 400);
-                currentBackground.drawImage(dWins, 250, 400);
+                currentBackground.drawImage(dWins, getWidth() / 2 - 235 , getHeight() / 2 - 20 );
             }
             bronzeChip.betBalance = 0;
-            addObject(continueButton, 500, 500);
+            addObject(continueButton, 550, 575);
             if (continueButton.getClickedState()){
                 continueButton.setClickedState(false);
                 if (bronzeChip.currentBalance == 0){
@@ -272,8 +277,12 @@ public class GameWorld extends World
             dHand = new BlackjackHand("dHand");
         } else if (state == GameState.GAME_OVER) {
             removeObjects(getObjects(Actor.class));
-            addObject(continueButton, 500, 500);
-            setBackground(new GreenfootImage("GAME OVER   ", 100, Color.BLACK, new Color(0, 0, 0, 0)));
+            addObject(continueButton, 550, 500);
+            GreenfootImage dungeonBackground = new GreenfootImage("dungeon.png");
+            setBackground(dungeonBackground);
+            GreenfootImage GameOverText =  new GreenfootImage("GAME OVER!", 100, new Color(127, 0, 0), new Color(0, 0, 0, 0));
+            dungeonBackground.drawImage(GameOverText, 300 , getHeight() / 2 - 20);
+            setBackground(dungeonBackground);
 
             if (continueButton.getClickedState()){
                 removeObject(continueButton);
