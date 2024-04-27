@@ -1,21 +1,29 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BlackjackHand here.
+ * Class representing a hand in the game of Blackjack.
+ * This class extends the Hand class and provides additional methods specific to Blackjack, such as calculating the weight of the hand based on Blackjack rules.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * It includes methods for adding cards to the hand, calculating the weight of the hand, and showing the weight information on the image of the hand.
+ * 
+ * It also overrides methods from the Hand class to ensure proper calculation and display of the weight.
+ * 
+ * Additionally, it includes a method to add a card from a deck to the hand, avoiding special cards for the dealer's hand.
+ * 
+ * @author (Your Name)
+ * @version (Version Number or Date)
  */
 public class BlackjackHand extends Hand
-{   public static final int BLACKJACK = 22;
-    public static final int BUST = -1;
+{
+    public static final int BLACKJACK = 22; // Constant representing Blackjack score
+    public static final int BUST = -1;       // Constant representing Bust score
 
-    private int weight;
+    private int weight; // Variable to store the weight of the hand
 
     /**
-     * Constructor that initializes this blackjack hand and sets the name.
+     * Constructor for creating a Blackjack hand with the specified name.
      * 
-     * @param name the name of the blackjack instance.
+     * @param name The name of the Blackjack hand instance.
      */
     public BlackjackHand(String name){
         super(name);
@@ -23,10 +31,12 @@ public class BlackjackHand extends Hand
     }
 
     /**
-     * Returns the weight of the card based on the rules of Blackjack.
+     * Returns the weight of a card based on the rules of Blackjack.
+     * 
+     * @param rank The rank of the card.
+     * @return The weight of the card.
      */
     private int getWeight(Rank rank){
-        // NOTE: This can be implemented with an multibranch if-else statement.
         switch(rank){
             case ACE:
                 return 11;
@@ -50,7 +60,7 @@ public class BlackjackHand extends Hand
     }
 
     /**
-     * Calculates the weight of this blackjack hand based on the cards that are face up.
+     * Calculates the weight of the Blackjack hand based on the cards that are face up.
      */
     public void calculateWeight(){
         int[] weight = {0, 0};
@@ -66,7 +76,7 @@ public class BlackjackHand extends Hand
                 weight[0] += currentCardValue;
                 weight[1] += currentCardValue;
             } else {
-                if (11+Math.max(weight[0],weight[1]) > 21){
+                if (11 + Math.max(weight[0],weight[1]) > 21){
                     int minWeight = Math.min(weight[0],weight[1]);
                     weight[0] = 1 + minWeight;
                     weight[1] = 11 + minWeight;
@@ -90,9 +100,9 @@ public class BlackjackHand extends Hand
     }
     
     /**
-     * Returns the weight of this blackjack hand.
+     * Returns the weight of this Blackjack hand.
      * 
-     * @returns an integer representing the weight of this blackjack hand.
+     * @return The weight of this Blackjack hand.
      */
     public int getWeight()
     {
@@ -100,26 +110,32 @@ public class BlackjackHand extends Hand
     }
 
     /**
-     * Adds a card aCard to this blackjack hand.
+     * Adds a card to this Blackjack hand and calculates the new weight.
      * 
-     * @param aCard a card to be added to this blackjack hand.
+     * @param aCard The card to be added to this Blackjack hand.
      */
     @Override
     public void add(Card aCard)
-        {
+    {
         super.add(aCard);
         calculateWeight();
         showWeight();
     }
     
-    
+    /**
+     * Adds a card from a deck to this Blackjack hand and calculates the new weight.
+     * This method avoids adding special cards to the dealer's hand.
+     * 
+     * @param aDeck The deck from which to draw a card.
+     * @param isFaceUp True if the card should be face up, false otherwise.
+     */
     public void addCardFromDeck(Deck aDeck, boolean isFaceUp)
-        {
-        if (this.name.equals( "dHand")){
+    {
+        if (this.name.equals("dHand")){
             Card aCard = aDeck.deal(isFaceUp);
-                while (aCard.isSpecial()){
-                    aCard = aDeck.deal(isFaceUp);
-                }
+            while (aCard.isSpecial()){
+                aCard = aDeck.deal(isFaceUp);
+            }
             super.add(aCard);    
         } else {
             super.add(aDeck.deal());
@@ -129,7 +145,7 @@ public class BlackjackHand extends Hand
     }
     
     /**
-     * Makes all the cards in this blackjack hand face up.
+     * Shows all the cards in this Blackjack hand face up and calculates the weight.
      */
     @Override
     public void show()
@@ -140,7 +156,7 @@ public class BlackjackHand extends Hand
     }
     
     /**
-     * Makes all the card in this hand face down.
+     * Hides all the cards in this Blackjack hand and calculates the weight.
      */
     @Override
     public void hide()
@@ -150,10 +166,10 @@ public class BlackjackHand extends Hand
     }
     
     /**
-     * Removes the card aCard from this blackjack hand if it exists in the hand.
+     * Removes a card from this Blackjack hand and calculates the new weight.
      * 
-     * @param aCard a card to be removed from this blackjack hand.
-     * @returns true if removed; otherwise false.
+     * @param aCard The card to be removed from this Blackjack hand.
+     * @return True if the card was removed, false otherwise.
      */
     public boolean remove(Card aCard){
         boolean isRemoved = super.remove(aCard);
@@ -165,7 +181,7 @@ public class BlackjackHand extends Hand
     }
     
     /**
-     * Adds the weight information for this blackjack hand to the image of the hand.
+     * Adds weight information for this Blackjack hand to the image of the hand.
      */
     protected void showWeight()
     {
