@@ -1,3 +1,4 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Represents a chip used for betting in the game.
  * 
