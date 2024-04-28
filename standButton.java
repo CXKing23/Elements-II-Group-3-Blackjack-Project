@@ -1,50 +1,74 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class standButton here.
+ * Represents a button for the "Stand" action in a game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * This class extends the button class and defines the behavior of the standButton.
+ * When clicked, it changes its appearance and triggers an action, indicating that the player has chosen to stand.
+ * 
+ * @author (Your Name)
+ * @version (Version Number or Date)
  */
 public class standButton extends button
 {
     private boolean wasClicked = false;
+    GreenfootImage image = new GreenfootImage("activeButton.png");
+    
     /**
-     * Act - do whatever the hitButton wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor for creating a standButton.
+     * Initializes the button with the default appearance and text.
      */
-       GreenfootImage image = new GreenfootImage("activeButton.png");
     public standButton(){
-        image.scale(170,80);
+        image.scale(170, 80);
         setImage(image);
         image.setColor(Color.BLACK); 
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Stand", 50, 48);
     }
 
+    /**
+     * Retrieves the state of whether the button was clicked.
+     * 
+     * @return true if the button was clicked, false otherwise
+     */
     public boolean getClickedState(){
         return wasClicked;
     }
+    
+    /**
+     * Sets the state of whether the button was clicked.
+     * 
+     * @param bool true to indicate that the button was clicked, false otherwise
+     */
     public void setClickedState(boolean bool){
         wasClicked = bool;
     }
     
+    /**
+     * Defines the behavior of the standButton when clicked.
+     * Changes the appearance of the button when clicked and triggers an action.
+     */
     public void onClick(){
-        image= new GreenfootImage("redButton.png");
-        image.scale(170,80);
+        // Change the appearance of the button when clicked
+        image = new GreenfootImage("redButton.png");
+        image.scale(170, 80);
         setImage(image);
         image.setColor(Color.BLACK); 
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Stand", 50, 48);
+        
+        // Add a delay to show the clicked state
         Greenfoot.delay(duration);
-        GreenfootImage image = new GreenfootImage("activeButton.png");
-        image.scale(170,80);
+        
+        // Restore the original appearance of the button
+        image = new GreenfootImage("activeButton.png");
+        image.scale(170, 80);
         setImage(image);
         image.setColor(Color.BLACK); 
         image.setFont(new Font("Arial", true, false, 24));
-        image.drawString("Stand", 50, 48);    
-        //add functionality here
+        image.drawString("Stand", 50, 48);
+        
+        // Add functionality here
         wasClicked = true;
-
     }
 }
