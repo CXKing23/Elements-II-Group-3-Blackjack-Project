@@ -11,7 +11,7 @@ import greenfoot.*;
  */
 public class warningScreen extends World
 {
-    private GameWorld currentGameWorld; // Reference to the current game world
+    public GameWorld currentGameWorld; // Reference to the current game world
     
     /**
      * Constructor for creating a warningScreen.
