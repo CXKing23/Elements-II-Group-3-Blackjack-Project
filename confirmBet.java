@@ -1,3 +1,4 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Represents a button used to confirm a bet in the game.
  * 
@@ -15,8 +16,8 @@
  */
 public class confirmBet extends button
 {
-    private GreenfootImage image = new GreenfootImage("activeButton.png");
-    private int activate;
+    public GreenfootImage image = new GreenfootImage("activeButton.png");
+    public int activate;
 
     /**
      * Constructs a confirmBet button with default settings.
