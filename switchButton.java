@@ -13,7 +13,7 @@ import greenfoot.*;
  */
 public class switchButton extends button 
 {
-    private static int count = 0; // Initialize count
+    public static int count = 0; // Initialize count
     
     /**
      * Constructor for creating a switchButton.
