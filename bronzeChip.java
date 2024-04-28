@@ -28,15 +28,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class bronzeChip extends button
 {
-    private String chipType;
+    public String chipType;
     private static final int BRONZE_CHIP_VALUE = 10;
     private static final int SILVER_CHIP_VALUE = 50;
     private static final int GOLD_CHIP_VALUE = 100;
     private static final int startingBalance = 10000;
 
-    private static Currency balance = new Currency();
+    public static Currency balance = new Currency();
     public static int currentBalance = startingBalance;
-    private static int betBalance = 0;
+    public static int betBalance = 0;
 
     /**
      * Constructor that initializes a bronze chip with the given filename.
