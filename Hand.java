@@ -86,17 +86,29 @@ public class Hand extends Deck
         setImage();
         return isDone;
     }
-    /**
-     * Method to remove a card from the deck at the specified index.
-     *
-     * @param cardIndex The card at the Index to be removed from the deck.
-     * @return True if the card was found and removed, false otherwise.
+       /**
+     * Removes a card from the deck at the specified index.
+     * 
+     * This method removes the card located at the specified index from the deck.
+     * After removal, the deck's internal array of cards is adjusted accordingly.
+     * 
+     * @param cardIndex The index of the card to be removed from the deck.
      */
     public void removeAtIndex(int cardIndex){
         Card aCard = cards[cardIndex];
         remove(aCard);
     }
     
+    /**
+     * Removes a specific card from the hand.
+     * 
+     * This method removes the provided card from the hand, adjusting the internal
+     * state of the hand accordingly. If the card is found and removed successfully,
+     * the number of cards in the hand decreases, and the visual representation of
+     * the hand is updated.
+     * 
+     * @param aCard The card to be removed from the hand.
+     */
     public void removeCard(Card aCard){
         boolean isFound = true;
         for(int index = 0; index < numOfCards; index++){
@@ -115,6 +127,7 @@ public class Hand extends Deck
         }
         
     }
+
     
     /**
      * Makes all the cards in this hand face up.
