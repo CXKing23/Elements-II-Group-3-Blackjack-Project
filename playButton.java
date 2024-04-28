@@ -15,9 +15,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class playButton extends button
 {
-    private int count = super.count; // Removed redundant initialization
-    private GreenfootImage image = new GreenfootImage("activeButton.png");
-    private String background;
+    public int count = super.count; // Removed redundant initialization
+    public GreenfootImage image = new GreenfootImage("activeButton.png");
+    public String background;
 
     /**
      * Constructor for creating a playButton.
@@ -79,6 +79,6 @@ public class playButton extends button
         
         // Trigger the action: update the background image and reset the current balance of the bronze chip
         updateBackground();
-        bronzeChip.currentBalance = 1000; // Reset current balance of the bronze chip to default value
+        bronzeChip.currentBalance = 5000; // Reset current balance of the bronze chip to default value
     }
 }
