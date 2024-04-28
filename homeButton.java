@@ -15,7 +15,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class homeButton extends Actor
 {
-    private boolean inStartScreen = true; // Indicates if currently in the start screen
+    public boolean inStartScreen = true; // Indicates if currently in the start screen
     
     /**
      * Constructor for creating a homeButton.
