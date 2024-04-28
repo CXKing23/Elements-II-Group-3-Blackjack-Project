@@ -1,3 +1,4 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Represents a button for performing the "Hit" action in a game.
  * This button changes its appearance when clicked and triggers an action.
