@@ -35,7 +35,7 @@ public class bronzeChip extends button
     private static final int startingBalance = 10000;
 
     private static Currency balance = new Currency();
-    private static int currentBalance = startingBalance;
+    public static int currentBalance = startingBalance;
     private static int betBalance = 0;
 
     /**
