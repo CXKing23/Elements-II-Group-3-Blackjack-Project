@@ -1,28 +1,39 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
- * Write a description of class confirmBet here.
+ * Represents a button used to confirm a bet in the game.
  * 
- * @author (your name) 
+ * This class extends the button class and provides functionality for confirming a bet.
+ * When clicked, it changes its appearance briefly to indicate activation.
+ * 
+ * The button displays the text "Confirm Bet" and changes its color when clicked.
+ * 
+ * The activation status of the button is indicated by the `activate` variable:
+ * - 0: Not activated
+ * - 1: Activated
+ * 
+ * @author (your name)
  * @version (a version number or a date)
  */
 public class confirmBet extends button
 {
+    private GreenfootImage image = new GreenfootImage("activeButton.png");
+    private int activate;
+
     /**
-     * Act - do whatever the hitButton wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructs a confirmBet button with default settings.
      */
-    GreenfootImage image = new GreenfootImage("activeButton.png");
-    
-    int activate ;
     public confirmBet(){
         image.scale(170, 80);
         setImage(image);
         image.setColor(Color.BLACK);
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Confirm Bet", 15, 48);
-        activate = 0;  // Removed redundant variable declaration
+        activate = 0;  
     }
+    
+    /**
+     * Handles the behavior when the button is clicked.
+     * Changes the appearance briefly to indicate activation.
+     */
     public void onClick(){
         GreenfootImage image = new GreenfootImage("redButton.png");  
         image.scale(170, 80);
@@ -37,9 +48,6 @@ public class confirmBet extends button
         image.setFont(new Font("Arial", true, false, 24));
         image.drawString("Confirm Bet", 15, 48);
         setImage(image);
-        activate = 1;  // Removed redundant variable declaration
+        activate = 1;  
     }
-    //public int getState(){
-        //return state;
-    }
-
+}
